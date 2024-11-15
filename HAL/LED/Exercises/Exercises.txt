@@ -1,0 +1,91 @@
+
+/*
+ * Exercises.txt
+ *
+ * Created: 11/15/2024 12:40:31 AM
+ *  Author: master
+ */ 
+
+
+// Exercise 1 : toggle LED based on Push Button press 
+
+
+
+#define MY_LED LED0
+
+
+	LED_Init(MY_LED);
+	PushB_Init(PushB0);
+	
+	uint8 LED_Status = 0;
+	uint8 PushB_Status = 0;
+
+	while(1)
+	{
+		PushB_Status = Read_PushB(PushB0);
+		if(PushB_Status == 1 && LED_Status == 0)
+		{
+			Write_LED(MY_LED,HIGH);
+			LED_Status = 1;
+		}
+		else if (PushB_Status ==  1 && LED_Status == 1 )
+		{
+			Write_LED(MY_LED,LOW);
+			LED_Status = 0;
+		}
+		_delay_ms(100) // used to debounce Push button behaviour
+		// although using software debounce the actual performance may not be 
+		// as stable as it should be. A hardware debounce may be considered a bette solution
+	}
+	
+Exercise 2 :Turn LEDS on sequentially :
+
+
+
+Set_Port_Direction(PA,0xFF);
+
+while(1)
+{
+	uint8 My_Bit = 1;
+	
+	for (uint8 i = 0 ; i < 8 ; i++)
+	{
+		Write_Port(PA,My_Bit);
+		My_Bit = My_Bit <<1 ;
+		_delay_ms(1000);
+		
+	}
+	
+
+
+Exercise 3 : Count Binary using LEDS on a specific Port
+
+	Set_Port_Direction(PA,0xFF);
+	
+	while(1)
+	{
+		for ( int i = 0 ; i <255 ; i++)
+		{
+			Write_Port(PA,i);
+			_delay_ms(200);
+		}
+			
+	}
+
+Excercise : 4 Use Internal Pull up resistor for PD5 (LED on with PushB pressed)
+
+// remember Push buttons are connected diagonally 
+
+	LED_Init(LED0);
+	Set_Channel_Direction(PD5,LOW);
+	Write_Channel(PD5,HIGH);
+	STD_Level Status  = 0;
+
+	while(1)
+	{
+		Status = Read_Channel(PD5);
+		if(Status == 0) Write_LED(LED0 , HIGH);
+		else Write_LED(LED0,LOW);
+	}
+		
+		

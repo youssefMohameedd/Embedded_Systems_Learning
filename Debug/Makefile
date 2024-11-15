@@ -35,7 +35,11 @@ LINKER_SCRIPT_DEP:=
 SUBDIRS :=  \
 ../HAL/LED \
 ../HAL/LED/Headers \
+../HAL/LED/Exercises \
 ../HAL/LED/Src \
+../HAL/SSD \
+../HAL/SSD/Headers \
+../HAL/SSD/Src \
 ../LIB \
 ../MCAL \
 ../HAL \

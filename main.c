@@ -16,44 +16,21 @@
 
 
 
-
 int main(void)
 {
-	
+
+
+	LED_Init(LED0);
+	Set_Channel_Direction(PD5,LOW);
+	Write_Channel(PD5,HIGH);
+	STD_Level Status  = 0;
+
 	while(1)
 	{
-
+		Status = Read_Channel(PD5);
+		if(Status == 0) Write_LED(LED0 , HIGH);
+		else Write_LED(LED0,LOW);
 	}
-
+	
 	return 0;   
 }
-
-
-
-/*
-
-#define MY_LED LED0
-
-// LED  Toggle Code 
-	LED_Init(MY_LED);
-	PushB_Init(PushB0);
-	
-	uint8 LED_Status = 0;
-	uint8 PushB_Status = 0;
-
-
-	while(1){
-		PushB_Status = Read_PushB(PushB0);
-		if(PushB_Status == 1 && LED_Status == 0)
-		{
-			Write_LED(MY_LED,HIGH);
-			LED_Status = 1;
-		}
-		else if (PushB_Status ==  1 && LED_Status == 1 )
-		{
-			Write_LED(MY_LED,LOW);
-			LED_Status = 0;
-		}
-	}
-	
-*/
