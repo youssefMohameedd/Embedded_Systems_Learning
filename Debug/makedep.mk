@@ -4,6 +4,8 @@
 
 HAL\LED\Src\LED.c
 
+HAL\SSD\Src\SSD.c
+
 main.c
 
 MCAL\DIO\Src\DIO.c

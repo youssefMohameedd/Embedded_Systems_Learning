@@ -1,0 +1,76 @@
+/*
+ * SSD.c
+ *
+ * Created: 11/15/2024 6:27:37 PM
+ *  Author: master
+ */ 
+#include <DIO.h>
+#include <SSD_CFG.h>
+#include <Bit_Math.h>
+#include <util/delay.h>
+
+
+
+void SSD_init()
+{
+	Set_Channel_Direction(A,OUTPUT);
+	Set_Channel_Direction(B,OUTPUT);
+	Set_Channel_Direction(C,OUTPUT);
+	Set_Channel_Direction(D,OUTPUT);
+	
+	Set_Channel_Direction(EN1,OUTPUT);
+	Set_Channel_Direction(EN2,OUTPUT);
+
+	Write_Channel(A,LOW);
+	Write_Channel(B,LOW);
+	Write_Channel(C,LOW);
+	Write_Channel(D,LOW);
+	
+}
+
+void Write_One_Digit(SSD_Num SSD_Number , uint8 value)
+{
+	STD_Level A_Bit = GET_BIT(value,0);
+	STD_Level B_Bit = GET_BIT(value,1);
+	STD_Level C_Bit = GET_BIT(value,2);
+	STD_Level D_Bit = GET_BIT(value,3);
+	
+	
+	if(value<10){
+		
+		Write_Channel(A,A_Bit);
+		Write_Channel(B,B_Bit);
+		Write_Channel(C,C_Bit);
+		Write_Channel(D,D_Bit);
+		
+		switch(SSD_Number)
+		{
+			case 0:
+			Write_Channel(EN1,HIGH);
+			Write_Channel(EN2,LOW);
+			break;
+			case 1 :
+			Write_Channel(EN2,HIGH);
+			Write_Channel(EN1,LOW);
+			break;
+		}
+
+	}
+	else
+	{
+		Write_Channel(A,LOW);
+		Write_Channel(B,LOW);
+		Write_Channel(C,LOW);
+		Write_Channel(D,LOW);	
+	}
+}
+void Write_Two_Digits(uint8 value)
+{
+ 
+	uint8 First_Digit = value%10 ;
+	uint8 Second_Digit = value/10;
+	Write_One_Digit(SSD_1,First_Digit);
+	_delay_ms(5);
+    Write_One_Digit(SSD_2,Second_Digit);
+	_delay_ms(5);
+}

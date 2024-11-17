@@ -1,23 +1,15 @@
+
 /*
- * Project_Test.c
+ * EX1.txt
  *
- * Created: 10/27/2024 10:29:19 PM
- * Author : Youssef Mohamed
+ * Created: 11/17/2024 5:09:12 PM
+ *  Author: maste
  */ 
 
+ 
 
-#define F_CPU 16000000UL
-
-#include <Bit_Math.h>
-#include <util/delay.h>
-#include <STD_Types.h>
-#include <DIO.h>
-#include <LED.h>
-#include <SSD.h>
-	
-
-int main(void)
-{
+ Exercise 1: Display Predefined number and enable increase and decrease
+ using PushB0 & PushB1 
 
     uint8 SSD_Value = 12;
 	uint8 PushB0_Status = 0;
@@ -59,27 +51,6 @@ int main(void)
 		
 
 	}
-	
-	return 0;   
-}
-
-/*	uint8 SSD_Val = 12;
-uint8 PushB0_Status = 0;
-uint8 PushB1_Status = 0;
-
-PushB_Init(PushB0);
-PushB_Init(PushB1);
-
-SSD_init();
 
 
-while(1)
-{
-if(Read_PushB(PushB0) && PushB0_Status==0) SSD_Val++;
-if(Read_PushB(PushB1) && PushB1_Status==0) SSD_Val--;
-Write_Two_Digits(SSD_Val);
-_delay_ms(50);
-
-
-}
-*/
+Exercise 2 : Adjust SSD Modules to use Write_Ports only instead of Write_Channels

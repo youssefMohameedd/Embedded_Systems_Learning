@@ -39,6 +39,6 @@ typedef enum
     PD7 = 31 
 }DIO_Channel;
 
-typedef enum {INPUT ,OUTPUT}DIO_Direction;
+typedef enum {INPUT ,OUTPUT, PULL_UP}DIO_Direction;
 
 #endif /*DIO_CFG Inclusion guards*/

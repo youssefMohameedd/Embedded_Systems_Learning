@@ -166,6 +166,9 @@
             <Value>../HAL/LED/Src</Value>
             <Value>../HAL</Value>
             <Value>../HAL/LED</Value>
+            <Value>../HAL/SSD</Value>
+            <Value>../HAL/SSD/Headers</Value>
+            <Value>../HAL/SSD/Src</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
         <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -211,13 +214,22 @@
     <Compile Include="HAL\LED\Src\LED.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\SSD\Headers\SSD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\SSD\Headers\SSD_CFG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\SSD\Src\SSD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LIB\Bit_Math.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="LIB\STD_Types.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\Bit_Math.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\DIO\Header\DIO.h">
@@ -240,17 +252,24 @@
     <Folder Include="HAL\LED\Src" />
     <Folder Include="HAL\SSD" />
     <Folder Include="HAL\SSD\Headers" />
+    <Folder Include="HAL\SSD\Exercises" />
     <Folder Include="HAL\SSD\Src" />
     <Folder Include="LIB" />
     <Folder Include="MCAL" />
     <Folder Include="HAL" />
     <Folder Include="APP" />
     <Folder Include="MCAL\DIO" />
-    <Folder Include="MCAL\DIO\Header" />
+    <Folder Include="MCAL\DIO\Header\" />
     <Folder Include="MCAL\DIO\Src" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HAL\LED\Exercises\Exercises.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\SSD\Exercises\EX1.sim1">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\SSD\Exercises\EX1.txt">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>

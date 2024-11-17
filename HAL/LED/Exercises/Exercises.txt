@@ -7,12 +7,10 @@
  */ 
 
 
-// Exercise 1 : toggle LED based on Push Button press 
-
+// Exercise 1 : toggle LED based on Push Button press with 2 different ways
 
 
 #define MY_LED LED0
-
 
 	LED_Init(MY_LED);
 	PushB_Init(PushB0);
@@ -33,7 +31,7 @@
 			Write_LED(MY_LED,LOW);
 			LED_Status = 0;
 		}
-		_delay_ms(100) // used to debounce Push button behaviour
+		_delay_ms(100); // used to debounce Push button behaviour
 		// although using software debounce the actual performance may not be 
 		// as stable as it should be. A hardware debounce may be considered a bette solution
 	}

@@ -8,6 +8,7 @@
 #include <STD_Types.h>
 #include <DIO.h>
 #include <LED_CFG.h>
+#include <util/delay.h>
 
 
 void LED_Init(DIO_Channel LED)
@@ -22,13 +23,22 @@ void Write_LED (DIO_Channel LED , STD_Level Level)
 {
 	Write_Channel(LED,Level);
 }
-STD_Level Read_PushB (DIO_Channel PushB)
+STD_Level Debounced_Read_PushB (DIO_Channel PushB)
 {
-	STD_Level Level = Read_Channel(PushB);
-	return Level;
+	STD_Level Level;
+	if(Read_Channel(PushB)== HIGH)
+	{
+		_delay_ms(50);
+		if(Read_Channel(PushB) == HIGH)
+		{
+			return HIGH;
+		}
+	}
+	return LOW;
+
 }
 
 void Toggle_LED(DIO_Channel LED)
 {
-	
+	Toggle_Channel(LED);
 }

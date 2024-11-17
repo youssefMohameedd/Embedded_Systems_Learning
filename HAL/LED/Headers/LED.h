@@ -19,7 +19,7 @@
 void LED_Init(DIO_Channel LED);
 void PushB_Init(DIO_Channel PushB);
 void Write_LED (DIO_Channel LED , STD_Level Level);
-STD_Level Read_PushB (DIO_Channel PushB);
+STD_Level Debounced_Read_PushB (DIO_Channel PushB);
 void Toggle_LED(DIO_Channel LED);
 
 
