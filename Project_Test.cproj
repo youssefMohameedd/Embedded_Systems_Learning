@@ -269,7 +269,7 @@
     <None Include="HAL\SSD\Exercises\EX1.sim1">
       <SubType>compile</SubType>
     </None>
-    <None Include="HAL\SSD\Exercises\EX1.txt">
+    <None Include="HAL\SSD\Exercises\Exercises.txt">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>

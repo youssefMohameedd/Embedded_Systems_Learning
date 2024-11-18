@@ -1,15 +1,36 @@
 
 /*
- * EX1.txt
+ * Exercises.txt
  *
  * Created: 11/17/2024 5:09:12 PM
- *  Author: maste
+ *  Author: master
  */ 
 
  
+Exercise 0 :
+Write SSD Driver using Write_Port functions only (Don't alternate other bits)
 
- Exercise 1: Display Predefined number and enable increase and decrease
- using PushB0 & PushB1 
+Exercise 1: 
+Display 1 Digit on 1 SSD with frequency 50 Hz
+
+Exercise 2:
+Display Numbers from 0 to 9 with increment every 1 second with frequency of 50 Hz
+
+Exercise 3:
+Display 2 Digits on 2 SSDs with Frequency of 25 Hz each
+
+Exercise 4:
+Display Numbers from 0 to 99 with increment every 1 second
+and Frequency of 25 Hz for each SSD
+
+Exercise 5:
+Display predefined number with possibilty to increment or decrement based on
+2 Push buttons press action ( PushB0 for increase & PushB1 for decrease) 
+with Frequency of 25 Hz for each SSD
+
+
+
+ 
 
     uint8 SSD_Value = 12;
 	uint8 PushB0_Status = 0;
@@ -48,8 +69,6 @@
 
 		Write_Two_Digits(SSD_Value);
 	
-		
-
 	}
 
 

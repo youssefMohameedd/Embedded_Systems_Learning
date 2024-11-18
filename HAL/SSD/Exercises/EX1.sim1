@@ -2,7 +2,7 @@
 
 <item itemtype="7-Seg BCD" CircId="7-Seg BCD-2" mainComp="false" Show_id="true" Show_Val="false" Pos="80,-136" rotation="0" hflip="1" vflip="1" label="7-Seg BCD-2" idLabPos="-31.1384,-54.8981" labelrot="0" valLabPos="-16,20" valLabRot="0" Show_Point_Pin="false" Show_Enable_Pin="true" />
 
-<item itemtype="MCU" CircId="mega32-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-28,-116" rotation="0" hflip="1" vflip="1" label="MCU" idLabPos="-0.568394,-36.1045" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="../../../Debug/Project_Test.hex" Auto_Load="true" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" MainMcu="true" SerialMon="-1" />
+<item itemtype="MCU" CircId="mega32-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-28,-116" rotation="0" hflip="1" vflip="1" label="MCU" idLabPos="13.9635,-1.935" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="../../../Debug/Project_Test.hex" Auto_Load="true" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" varList="PORTA" MainMcu="true" SerialMon="-1" />
 
 <item itemtype="7-Seg BCD" CircId="7-Seg BCD-4" mainComp="false" Show_id="true" Show_Val="false" Pos="144,-136" rotation="0" hflip="1" vflip="1" label="7-Seg BCD-1" idLabPos="-31.1384,-54.8981" labelrot="0" valLabPos="-16,20" valLabRot="0" Show_Point_Pin="false" Show_Enable_Pin="true" />
 
