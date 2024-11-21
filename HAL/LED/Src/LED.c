@@ -14,15 +14,29 @@
 void LED_Init(DIO_Channel LED)
 {
 	Set_Channel_Direction(LED,OUTPUT);
+	Write_Channel(LED,LOW);
 }
 void PushB_Init(DIO_Channel PushB)
 {
 	Set_Channel_Direction(PushB,INPUT);	
 }
+void Buzzer_Init(DIO_Channel Buzzer)
+{
+	Set_Channel_Direction(Buzzer,OUTPUT);
+	Write_Channel(Buzzer,LOW);
+}
+
 void Write_LED (DIO_Channel LED , STD_Level Level)
 {
 	Write_Channel(LED,Level);
 }
+
+void Write_Buzzer(DIO_Channel Buzzer ,STD_Level Level)
+{
+	Write_Channel(Buzzer,Level);
+}
+
+
 STD_Level Debounced_Read_PushB (DIO_Channel PushB)
 {
 	STD_Level Level;
@@ -42,3 +56,4 @@ void Toggle_LED(DIO_Channel LED)
 {
 	Toggle_Channel(LED);
 }
+

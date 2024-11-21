@@ -205,6 +205,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="APP\main.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\LED\Headers\LED.h">
       <SubType>compile</SubType>
     </Compile>
@@ -229,9 +232,6 @@
     <Compile Include="LIB\STD_Types.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="main.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="MCAL\DIO\Header\DIO.h">
       <SubType>compile</SubType>
     </Compile>
@@ -250,6 +250,7 @@
     <Folder Include="HAL\LED\Headers" />
     <Folder Include="HAL\LED\Exercises" />
     <Folder Include="HAL\LED\Src" />
+    <Folder Include="HAL\Mini-Projects" />
     <Folder Include="HAL\SSD" />
     <Folder Include="HAL\SSD\Headers" />
     <Folder Include="HAL\SSD\Exercises" />
@@ -264,6 +265,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HAL\LED\Exercises\Exercises.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\Mini-Projects\Mini-Project1.txt">
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\SSD\Exercises\EX1.sim1">

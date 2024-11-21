@@ -3,34 +3,122 @@
  * Exercises.txt
  *
  * Created: 11/17/2024 5:09:12 PM
- *  Author: master
+ *  Author: Youssef
  */ 
 
  
 Exercise 0 :
-Write SSD Driver using Write_Port functions only (Don't alternate other bits)
+Write SSD Driver module for SSD_Init & SSD_Write_One_Digit without 
+using Write_Channel (Don't alternate other bits)
+
+#define F_CPU 16000000UL
+
+
+void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
+{
+	if(  value >= 0 && value < 10  )
+	{
+		value = value << 4 ;
+		PORTA_REG &= 0x0F;
+		PORTA_REG |= value;
+	}
+	else	PORTA_REG &= 0x0F;
+	
+	switch(SSD_Number)
+	{
+		case SSD_1:
+		Write_Channel(EN1,HIGH);
+		Write_Channel(EN2,LOW);
+		break;
+		case SSD_2:
+		Write_Channel(EN1,LOW);
+		Write_Channel(EN2,HIGH);
+		break;
+	}
+	_delay_ms(10);
+		
+}
 
 Exercise 1: 
 Display 1 Digit on 1 SSD with frequency 50 Hz
 
+	SSD_Write_One_Digit(SSD_1,3);
+	_delay_ms(10);
+	
+
+
 Exercise 2:
-Display Numbers from 0 to 9 with increment every 1 second with frequency of 50 Hz
+Display Numbers from 0 to 9 with increment every 1 second
+
+	for ( uint8 i =  0 ; i < 10 ; i++)
+		{
+			for(uint8 counter = 0 ; counter < 100 ; counter++)
+			{
+				SSD_Write_One_Digit(SSD_1,i);
+								
+			}
+			
 
 Exercise 3:
-Display 2 Digits on 2 SSDs with Frequency of 25 Hz each
+Display 2 Digits on 2 SSDs with Frequency of 50 Hz each
+
+void SSD_Write_Two_Digits(uint8 value)
+{
+	uint8 First_Digit = value % 10 ;
+	uint8 Second_Digit = value / 10 ;
+	
+	SSD_Write_One_Digit(SSD_1,First_Digit);
+	SSD_Write_One_Digit(SSD_2,Second_Digit);
+	
+}
+
+int main(void)
+{	
+	SSD_init();
+
+	while(1)
+	{
+		SSD_Write_Two_Digits(15);
+						
+	}
+	return 0;   
+}
 
 Exercise 4:
-Display Numbers from 0 to 99 with increment every 1 second
-and Frequency of 25 Hz for each SSD
+Display Numbers from 99 to 0 with decrement every 1 second operate buzzer at 99
+
+	SSD_init();
+	Buzzer_Init(Buzzer);
+	while(1)
+	{
+		for (sint8 i = 99 ; i > 0 ; i--)
+		{
+			for(uint8 counter = 0 ; counter < 50 ; counter++)
+			{
+				SSD_Write_Two_Digits(i);
+			}
+			
+			if(i == 0) 
+			{
+				Write_Buzzer(Buzzer,HIGH);
+				_delay_ms(1500);
+				Write_Buzzer(Buzzer,LOW);
+				_delay_ms(1000);
+
+			}
+			
+			
+		}
+		
+	}
+	
 
 Exercise 5:
+
 Display predefined number with possibilty to increment or decrement based on
 2 Push buttons press action ( PushB0 for increase & PushB1 for decrease) 
 with Frequency of 25 Hz for each SSD
 
-
-
- 
 
     uint8 SSD_Value = 12;
 	uint8 PushB0_Status = 0;
@@ -71,5 +159,3 @@ with Frequency of 25 Hz for each SSD
 	
 	}
 
-
-Exercise 2 : Adjust SSD Modules to use Write_Ports only instead of Write_Channels

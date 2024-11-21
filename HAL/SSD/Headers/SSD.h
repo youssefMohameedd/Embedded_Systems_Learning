@@ -12,8 +12,8 @@
 #include <SSD_CFG.h>
 
 void SSD_init();
-void Write_One_Digit(SSD_Num SSD_Number , uint8 value);
-void Write_Two_Digits(uint8 value);
+void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value);
+void SSD_Write_Two_Digits(uint8 value);
 
 
 

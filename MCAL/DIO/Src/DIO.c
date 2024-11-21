@@ -23,7 +23,8 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 		CLR_BIT(DDRA_REG,pin);
 		SET_BIT(PORTA_REG,pin);
 		}
-		else if(Direction == OUTPUT)	SET_BIT(DDRA_REG,pin);
+		else if(Direction == OUTPUT)	
+		SET_BIT(DDRA_REG,pin);
 		break;
 		case PB:
 		if(Direction == INPUT)		
@@ -36,7 +37,8 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 			CLR_BIT(DDRB_REG,pin);
 			SET_BIT(PORTB_REG,pin);
 		}	
-		else if(Direction == OUTPUT)	SET_BIT(DDRB_REG,pin);
+		else if(Direction == OUTPUT)
+		SET_BIT(DDRB_REG,pin);
 		break;
 		case PC:
 		if(Direction == INPUT)	
@@ -49,7 +51,8 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 			CLR_BIT(DDRC_REG,pin);
 			SET_BIT(PORTC_REG,pin);
 		}
-		else if(Direction == OUTPUT)	SET_BIT(DDRC_REG,pin);
+		else if(Direction == OUTPUT)
+		SET_BIT(DDRC_REG,pin);
 		break;
 		case PD:
 		if(Direction == INPUT)	
@@ -62,7 +65,8 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 			CLR_BIT(DDRD_REG,pin);
 			SET_BIT(PORTD_REG,pin);
 		}
-		else if(Direction == OUTPUT)	SET_BIT(DDRD_REG,pin);
+		else if(Direction == OUTPUT)
+		SET_BIT(DDRD_REG,pin);
 		break;
 	}
 	

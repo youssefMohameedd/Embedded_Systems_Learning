@@ -17,6 +17,7 @@
 #define C PA6
 #define D PA7
 
+#define MAX_NUM_SSDS 2
 typedef enum {SSD_1 = 0 , SSD_2 = 1 }SSD_Num;
 
 

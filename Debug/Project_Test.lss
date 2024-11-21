@@ -3,31 +3,31 @@ Project_Test.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000000ec  00000000  00000000  00000054  2**1
+  0 .text         0000042c  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  00000140  2**0
+  1 .data         00000000  00800060  00800060  00000480  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .comment      00000030  00000000  00000000  00000140  2**0
+  2 .comment      00000030  00000000  00000000  00000480  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000170  2**2
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004b0  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000030  00000000  00000000  000001ac  2**0
+  4 .debug_aranges 000000f0  00000000  00000000  000004ec  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000774  00000000  00000000  000001dc  2**0
+  5 .debug_info   0000132c  00000000  00000000  000005dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000062d  00000000  00000000  00000950  2**0
+  6 .debug_abbrev 0000098e  00000000  00000000  00001908  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000004a8  00000000  00000000  00000f7d  2**0
+  7 .debug_line   00000c66  00000000  00000000  00002296  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000044  00000000  00000000  00001428  2**2
+  8 .debug_frame  00000190  00000000  00000000  00002efc  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000061d1  00000000  00000000  0000146c  2**0
+  9 .debug_str    000042e6  00000000  00000000  0000308c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000001ee  00000000  00000000  0000763d  2**0
+ 10 .debug_loc    00000b38  00000000  00000000  00007372  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000020  00000000  00000000  0000782b  2**0
+ 11 .debug_ranges 000000b0  00000000  00000000  00007eaa  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  0000107c  00000000  00000000  0000784b  2**0
+ 12 .debug_macro  00001345  00000000  00000000  00007f5a  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -83,163 +83,691 @@ Disassembly of section .text:
   5a:	d8 e0       	ldi	r29, 0x08	; 8
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
-  60:	31 d0       	rcall	.+98     	; 0xc4 <main>
-  62:	42 c0       	rjmp	.+132    	; 0xe8 <_exit>
+  60:	5a d0       	rcall	.+180    	; 0x116 <main>
+  62:	e2 c1       	rjmp	.+964    	; 0x428 <_exit>
 
 00000064 <__bad_interrupt>:
   64:	cd cf       	rjmp	.-102    	; 0x0 <__vectors>
 
-00000066 <SSD_WTD>:
+00000066 <Buzzer_Init>:
+void PushB_Init(DIO_Channel PushB)
+{
+	Set_Channel_Direction(PushB,INPUT);	
+}
+void Buzzer_Init(DIO_Channel Buzzer)
+{
+  66:	cf 93       	push	r28
+  68:	c8 2f       	mov	r28, r24
+	Set_Channel_Direction(Buzzer,OUTPUT);
+  6a:	61 e0       	ldi	r22, 0x01	; 1
+  6c:	61 d0       	rcall	.+194    	; 0x130 <Set_Channel_Direction>
+	Write_Channel(Buzzer,LOW);
+  6e:	60 e0       	ldi	r22, 0x00	; 0
+  70:	8c 2f       	mov	r24, r28
+  72:	4d d1       	rcall	.+666    	; 0x30e <Write_Channel>
+}
+  74:	cf 91       	pop	r28
+  76:	08 95       	ret
+
+00000078 <SSD_init>:
+#include <DIO_HW.h>
+
+
+void SSD_init()
+{
+	Set_Channel_Direction(EN1 , OUTPUT);
+  78:	61 e0       	ldi	r22, 0x01	; 1
+  7a:	89 e0       	ldi	r24, 0x09	; 9
+  7c:	59 d0       	rcall	.+178    	; 0x130 <Set_Channel_Direction>
+	Set_Channel_Direction(EN2 , OUTPUT);
+  7e:	61 e0       	ldi	r22, 0x01	; 1
+  80:	8a e0       	ldi	r24, 0x0A	; 10
+  82:	56 d0       	rcall	.+172    	; 0x130 <Set_Channel_Direction>
+	Write_Channel(EN1,HIGH);
+  84:	61 e0       	ldi	r22, 0x01	; 1
+  86:	89 e0       	ldi	r24, 0x09	; 9
+  88:	42 d1       	rcall	.+644    	; 0x30e <Write_Channel>
+	Write_Channel(EN2,LOW);
+  8a:	60 e0       	ldi	r22, 0x00	; 0
+  8c:	8a e0       	ldi	r24, 0x0A	; 10
+  8e:	3f d1       	rcall	.+638    	; 0x30e <Write_Channel>
+  90:	8a b3       	in	r24, 0x1a	; 26
+	DDRA_REG |= 0xF0;
+  92:	80 6f       	ori	r24, 0xF0	; 240
+  94:	8a bb       	out	0x1a, r24	; 26
+  96:	8b b3       	in	r24, 0x1b	; 27
+	PORTA_REG &= 0x0F;
+  98:	8f 70       	andi	r24, 0x0F	; 15
+  9a:	8b bb       	out	0x1b, r24	; 27
+  9c:	08 95       	ret
+
+0000009e <SSD_Write_One_Digit>:
+  9e:	6a 30       	cpi	r22, 0x0A	; 10
 	
 }
-	
-void SSD_WTD(uint8  value)
+void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
 {
-	uint8 First_Digit = value%10;
-  66:	9d ec       	ldi	r25, 0xCD	; 205
-  68:	89 9f       	mul	r24, r25
-  6a:	91 2d       	mov	r25, r1
-  6c:	11 24       	eor	r1, r1
-  6e:	29 2f       	mov	r18, r25
-  70:	26 95       	lsr	r18
-  72:	26 95       	lsr	r18
-  74:	26 95       	lsr	r18
-  76:	22 0f       	add	r18, r18
-  78:	32 2f       	mov	r19, r18
-  7a:	33 0f       	add	r19, r19
-  7c:	33 0f       	add	r19, r19
-  7e:	23 0f       	add	r18, r19
-  80:	82 1b       	sub	r24, r18
-  82:	28 2f       	mov	r18, r24
-	uint8 Second_Digit = value/10;
-  84:	96 95       	lsr	r25
-  86:	96 95       	lsr	r25
-  88:	96 95       	lsr	r25
+	if(  value >= 0 && value < 10  )
+  a0:	38 f4       	brcc	.+14     	; 0xb0 <SSD_Write_One_Digit+0x12>
+	{
+		uint8 PortData = PORTA_REG & 0x0F; 
+  a2:	9b b3       	in	r25, 0x1b	; 27
+  a4:	9f 70       	andi	r25, 0x0F	; 15
+		value = value << 4 ;
+		PortData = PortData | value ;
+  a6:	62 95       	swap	r22
+  a8:	60 7f       	andi	r22, 0xF0	; 240
+  aa:	69 2b       	or	r22, r25
+		PORTA_REG = PortData;
+  ac:	6b bb       	out	0x1b, r22	; 27
+  ae:	03 c0       	rjmp	.+6      	; 0xb6 <SSD_Write_One_Digit+0x18>
+	}
+	else	PORTA_REG &= 0x0F;
+  b0:	9b b3       	in	r25, 0x1b	; 27
+  b2:	9f 70       	andi	r25, 0x0F	; 15
+  b4:	9b bb       	out	0x1b, r25	; 27
 	
-	//Write Digit 2 
-	First_Digit <<= 4;
-	PORTA = (PORTA & 0x0F ) | First_Digit;
-  8a:	8b b3       	in	r24, 0x1b	; 27
-  8c:	8f 70       	andi	r24, 0x0F	; 15
-  8e:	22 95       	swap	r18
-  90:	20 7f       	andi	r18, 0xF0	; 240
-  92:	28 2b       	or	r18, r24
-  94:	2b bb       	out	0x1b, r18	; 27
-#include <SSD_CFG.h>
-
-void SSD_INIT(SSD_Num x)
-{
-
-	PORTB = 0b00000010 << x;
-  96:	82 e0       	ldi	r24, 0x02	; 2
-  98:	88 bb       	out	0x18, r24	; 24
+	switch(SSD_Number)
+  b6:	88 23       	and	r24, r24
+  b8:	19 f0       	breq	.+6      	; 0xc0 <SSD_Write_One_Digit+0x22>
+  ba:	81 30       	cpi	r24, 0x01	; 1
+  bc:	41 f0       	breq	.+16     	; 0xce <SSD_Write_One_Digit+0x30>
+  be:	0d c0       	rjmp	.+26     	; 0xda <SSD_Write_One_Digit+0x3c>
+	{
+		case SSD_1:
+		Write_Channel(EN1,HIGH);
+  c0:	61 e0       	ldi	r22, 0x01	; 1
+  c2:	89 e0       	ldi	r24, 0x09	; 9
+  c4:	24 d1       	rcall	.+584    	; 0x30e <Write_Channel>
+		Write_Channel(EN2,LOW);
+  c6:	60 e0       	ldi	r22, 0x00	; 0
+  c8:	8a e0       	ldi	r24, 0x0A	; 10
+  ca:	21 d1       	rcall	.+578    	; 0x30e <Write_Channel>
+		break;
+  cc:	06 c0       	rjmp	.+12     	; 0xda <SSD_Write_One_Digit+0x3c>
+		case SSD_2:
+		Write_Channel(EN1,LOW);
+  ce:	60 e0       	ldi	r22, 0x00	; 0
+  d0:	89 e0       	ldi	r24, 0x09	; 9
+  d2:	1d d1       	rcall	.+570    	; 0x30e <Write_Channel>
+		Write_Channel(EN2,HIGH);
+  d4:	61 e0       	ldi	r22, 0x01	; 1
+  d6:	8a e0       	ldi	r24, 0x0A	; 10
+  d8:	1a d1       	rcall	.+564    	; 0x30e <Write_Channel>
+  da:	8f e3       	ldi	r24, 0x3F	; 63
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  9a:	ef e3       	ldi	r30, 0x3F	; 63
-  9c:	fc e9       	ldi	r31, 0x9C	; 156
-  9e:	31 97       	sbiw	r30, 0x01	; 1
-  a0:	f1 f7       	brne	.-4      	; 0x9e <SSD_WTD+0x38>
-  a2:	00 c0       	rjmp	.+0      	; 0xa4 <SSD_WTD+0x3e>
-  a4:	00 00       	nop
-	SSD_INIT(SSD_1);
-	_delay_ms(10);
-	
-	//Enable EN2
-	Second_Digit <<= 4;
-	PORTA = (PORTA & 0x0F ) | Second_Digit;
-  a6:	8b b3       	in	r24, 0x1b	; 27
-  a8:	8f 70       	andi	r24, 0x0F	; 15
-  aa:	92 95       	swap	r25
-  ac:	90 7f       	andi	r25, 0xF0	; 240
-  ae:	98 2b       	or	r25, r24
-  b0:	9b bb       	out	0x1b, r25	; 27
-#include <SSD_CFG.h>
+  dc:	9c e9       	ldi	r25, 0x9C	; 156
+  de:	01 97       	sbiw	r24, 0x01	; 1
+  e0:	f1 f7       	brne	.-4      	; 0xde <SSD_Write_One_Digit+0x40>
+  e2:	00 c0       	rjmp	.+0      	; 0xe4 <SSD_Write_One_Digit+0x46>
+  e4:	00 00       	nop
+  e6:	08 95       	ret
 
-void SSD_INIT(SSD_Num x)
+000000e8 <SSD_Write_Two_Digits>:
+  e8:	cf 93       	push	r28
+void SSD_Write_Two_Digits(uint8 value)
 {
-
-	PORTB = 0b00000010 << x;
-  b2:	84 e0       	ldi	r24, 0x04	; 4
-  b4:	88 bb       	out	0x18, r24	; 24
-  b6:	8f e3       	ldi	r24, 0x3F	; 63
-  b8:	9c e9       	ldi	r25, 0x9C	; 156
-  ba:	01 97       	sbiw	r24, 0x01	; 1
-  bc:	f1 f7       	brne	.-4      	; 0xba <SSD_WTD+0x54>
-  be:	00 c0       	rjmp	.+0      	; 0xc0 <SSD_WTD+0x5a>
-  c0:	00 00       	nop
-  c2:	08 95       	ret
-
-000000c4 <main>:
+	uint8 First_Digit = value % 10 ;
+	uint8 Second_Digit = value / 10 ;
 	
-}
+	SSD_Write_One_Digit(SSD_1,First_Digit);
+  ea:	cd ec       	ldi	r28, 0xCD	; 205
+  ec:	8c 9f       	mul	r24, r28
+  ee:	c1 2d       	mov	r28, r1
+  f0:	11 24       	eor	r1, r1
+  f2:	c6 95       	lsr	r28
+  f4:	c6 95       	lsr	r28
+  f6:	c6 95       	lsr	r28
+  f8:	2c 2f       	mov	r18, r28
+  fa:	22 0f       	add	r18, r18
+  fc:	92 2f       	mov	r25, r18
+  fe:	99 0f       	add	r25, r25
+ 100:	99 0f       	add	r25, r25
+ 102:	92 0f       	add	r25, r18
+ 104:	68 2f       	mov	r22, r24
+ 106:	69 1b       	sub	r22, r25
+ 108:	80 e0       	ldi	r24, 0x00	; 0
+ 10a:	c9 df       	rcall	.-110    	; 0x9e <SSD_Write_One_Digit>
+	SSD_Write_One_Digit(SSD_2,Second_Digit);
+ 10c:	6c 2f       	mov	r22, r28
+ 10e:	81 e0       	ldi	r24, 0x01	; 1
+ 110:	c6 df       	rcall	.-116    	; 0x9e <SSD_Write_One_Digit>
+
+	
+ 112:	cf 91       	pop	r28
+ 114:	08 95       	ret
+
+00000116 <main>:
+#include <util/delay.h>
+
 
 int main(void)
 {	
-	DDRB = 0x0F;  // Set PORTB as output for SSD control
-  c4:	8f e0       	ldi	r24, 0x0F	; 15
-  c6:	87 bb       	out	0x17, r24	; 23
-	DDRA = 0xFF;  // Set upper nibble of PORTA as output for segments
-  c8:	8f ef       	ldi	r24, 0xFF	; 255
-  ca:	8a bb       	out	0x1a, r24	; 26
-	PORTB = 0x00;
-  cc:	18 ba       	out	0x18, r1	; 24
-	PORTA = 0x00; 
-  ce:	1b ba       	out	0x1b, r1	; 27
-#include <SSD_CFG.h>
+	SSD_init();
+ 116:	b0 df       	rcall	.-160    	; 0x78 <SSD_init>
+	Buzzer_Init(Buzzer);
+ 118:	83 e0       	ldi	r24, 0x03	; 3
+ 11a:	a5 df       	rcall	.-182    	; 0x66 <Buzzer_Init>
+#include <SSD.h>
+#include <util/delay.h>
 
-void SSD_INIT(SSD_Num x)
-{
-
-	PORTB = 0b00000010 << x;
-  d0:	82 e0       	ldi	r24, 0x02	; 2
-  d2:	88 bb       	out	0x18, r24	; 24
-	
-	
-}
 
 int main(void)
 {	
-  d4:	d3 e6       	ldi	r29, 0x63	; 99
-  d6:	06 c0       	rjmp	.+12     	; 0xe4 <main+0x20>
-	{	
-		for (uint8 i = 99; i > 0 ; i--)
+ 11c:	d3 e6       	ldi	r29, 0x63	; 99
+	{
+		for (sint8 i = 99 ; i > 0 ; i--)
 		{
 			for(uint8 counter = 0 ; counter < 50 ; counter++)
 			{
-				SSD_WTD(i);
-  d8:	8d 2f       	mov	r24, r29
-  da:	c5 df       	rcall	.-118    	; 0x66 <SSD_WTD>
-  dc:	c1 50       	subi	r28, 0x01	; 1
-
+				SSD_Write_Two_Digits(i);
+ 11e:	06 c0       	rjmp	.+12     	; 0x12c <main+0x16>
+ 120:	8d 2f       	mov	r24, r29
+ 122:	e2 df       	rcall	.-60     	; 0xe8 <SSD_Write_Two_Digits>
+ 124:	c1 50       	subi	r28, 0x01	; 1
+	Buzzer_Init(Buzzer);
 	while(1)
-	{	
-		for (uint8 i = 99; i > 0 ; i--)
+	{
+		for (sint8 i = 99 ; i > 0 ; i--)
 		{
 			for(uint8 counter = 0 ; counter < 50 ; counter++)
-  de:	e1 f7       	brne	.-8      	; 0xd8 <main+0x14>
-  e0:	d1 50       	subi	r29, 0x01	; 1
-	PORTA = 0x00; 
-	SSD_INIT(SSD_1);
-
+ 126:	e1 f7       	brne	.-8      	; 0x120 <main+0xa>
+ 128:	d1 50       	subi	r29, 0x01	; 1
+{	
+	SSD_init();
+	Buzzer_Init(Buzzer);
 	while(1)
-	{	
-		for (uint8 i = 99; i > 0 ; i--)
-  e2:	c1 f3       	breq	.-16     	; 0xd4 <main+0x10>
-	
-	
-}
+	{
+		for (sint8 i = 99 ; i > 0 ; i--)
+ 12a:	c1 f3       	breq	.-16     	; 0x11c <main+0x6>
+#include <SSD.h>
+#include <util/delay.h>
+
 
 int main(void)
 {	
-  e4:	c2 e3       	ldi	r28, 0x32	; 50
-  e6:	f8 cf       	rjmp	.-16     	; 0xd8 <main+0x14>
+ 12c:	c2 e3       	ldi	r28, 0x32	; 50
+ 12e:	f8 cf       	rjmp	.-16     	; 0x120 <main+0xa>
 
-000000e8 <_exit>:
-  e8:	f8 94       	cli
+00000130 <Set_Channel_Direction>:
 
-000000ea <__stop_program>:
-  ea:	ff cf       	rjmp	.-2      	; 0xea <__stop_program>
+
+void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
+{
+    uint8 port = Ch_ID/8 ;
+    uint8 pin = Ch_ID%8 ;
+ 130:	98 2f       	mov	r25, r24
+ 132:	97 70       	andi	r25, 0x07	; 7
+	
+	switch(port)
+ 134:	86 95       	lsr	r24
+ 136:	86 95       	lsr	r24
+ 138:	86 95       	lsr	r24
+ 13a:	81 30       	cpi	r24, 0x01	; 1
+ 13c:	09 f4       	brne	.+2      	; 0x140 <Set_Channel_Direction+0x10>
+ 13e:	40 c0       	rjmp	.+128    	; 0x1c0 <Set_Channel_Direction+0x90>
+ 140:	38 f0       	brcs	.+14     	; 0x150 <Set_Channel_Direction+0x20>
+ 142:	82 30       	cpi	r24, 0x02	; 2
+ 144:	09 f4       	brne	.+2      	; 0x148 <Set_Channel_Direction+0x18>
+ 146:	74 c0       	rjmp	.+232    	; 0x230 <Set_Channel_Direction+0x100>
+ 148:	83 30       	cpi	r24, 0x03	; 3
+ 14a:	09 f4       	brne	.+2      	; 0x14e <Set_Channel_Direction+0x1e>
+ 14c:	a9 c0       	rjmp	.+338    	; 0x2a0 <Set_Channel_Direction+0x170>
+ 14e:	08 95       	ret
+	{
+		case PA:
+		if(Direction == INPUT)
+ 150:	61 11       	cpse	r22, r1
+ 152:	12 c0       	rjmp	.+36     	; 0x178 <Set_Channel_Direction+0x48>
+		{
+			CLR_BIT(DDRA_REG,pin);
+ 154:	4a b3       	in	r20, 0x1a	; 26
+ 156:	21 e0       	ldi	r18, 0x01	; 1
+ 158:	30 e0       	ldi	r19, 0x00	; 0
+ 15a:	b9 01       	movw	r22, r18
+ 15c:	02 c0       	rjmp	.+4      	; 0x162 <Set_Channel_Direction+0x32>
+ 15e:	66 0f       	add	r22, r22
+ 160:	77 1f       	adc	r23, r23
+ 162:	9a 95       	dec	r25
+ 164:	e2 f7       	brpl	.-8      	; 0x15e <Set_Channel_Direction+0x2e>
+ 166:	cb 01       	movw	r24, r22
+ 168:	80 95       	com	r24
+ 16a:	94 2f       	mov	r25, r20
+ 16c:	98 23       	and	r25, r24
+ 16e:	9a bb       	out	0x1a, r25	; 26
+			CLR_BIT(PORTA_REG,pin);
+ 170:	9b b3       	in	r25, 0x1b	; 27
+ 172:	89 23       	and	r24, r25
+ 174:	8b bb       	out	0x1b, r24	; 27
+ 176:	08 95       	ret
+		}
+		else if(Direction == PULL_UP)
+ 178:	62 30       	cpi	r22, 0x02	; 2
+ 17a:	91 f4       	brne	.+36     	; 0x1a0 <Set_Channel_Direction+0x70>
+		{
+		CLR_BIT(DDRA_REG,pin);
+ 17c:	4a b3       	in	r20, 0x1a	; 26
+ 17e:	21 e0       	ldi	r18, 0x01	; 1
+ 180:	30 e0       	ldi	r19, 0x00	; 0
+ 182:	b9 01       	movw	r22, r18
+ 184:	02 c0       	rjmp	.+4      	; 0x18a <Set_Channel_Direction+0x5a>
+ 186:	66 0f       	add	r22, r22
+ 188:	77 1f       	adc	r23, r23
+ 18a:	9a 95       	dec	r25
+ 18c:	e2 f7       	brpl	.-8      	; 0x186 <Set_Channel_Direction+0x56>
+ 18e:	cb 01       	movw	r24, r22
+ 190:	96 2f       	mov	r25, r22
+ 192:	90 95       	com	r25
+ 194:	94 23       	and	r25, r20
+ 196:	9a bb       	out	0x1a, r25	; 26
+		SET_BIT(PORTA_REG,pin);
+ 198:	9b b3       	in	r25, 0x1b	; 27
+ 19a:	89 2b       	or	r24, r25
+ 19c:	8b bb       	out	0x1b, r24	; 27
+ 19e:	08 95       	ret
+		}
+		else if(Direction == OUTPUT)	
+ 1a0:	61 30       	cpi	r22, 0x01	; 1
+ 1a2:	09 f0       	breq	.+2      	; 0x1a6 <Set_Channel_Direction+0x76>
+ 1a4:	b3 c0       	rjmp	.+358    	; 0x30c <Set_Channel_Direction+0x1dc>
+		SET_BIT(DDRA_REG,pin);
+ 1a6:	4a b3       	in	r20, 0x1a	; 26
+ 1a8:	21 e0       	ldi	r18, 0x01	; 1
+ 1aa:	30 e0       	ldi	r19, 0x00	; 0
+ 1ac:	b9 01       	movw	r22, r18
+ 1ae:	02 c0       	rjmp	.+4      	; 0x1b4 <Set_Channel_Direction+0x84>
+ 1b0:	66 0f       	add	r22, r22
+ 1b2:	77 1f       	adc	r23, r23
+ 1b4:	9a 95       	dec	r25
+ 1b6:	e2 f7       	brpl	.-8      	; 0x1b0 <Set_Channel_Direction+0x80>
+ 1b8:	cb 01       	movw	r24, r22
+ 1ba:	84 2b       	or	r24, r20
+ 1bc:	8a bb       	out	0x1a, r24	; 26
+ 1be:	08 95       	ret
+		break;
+		case PB:
+		if(Direction == INPUT)		
+ 1c0:	61 11       	cpse	r22, r1
+ 1c2:	12 c0       	rjmp	.+36     	; 0x1e8 <Set_Channel_Direction+0xb8>
+		{
+			CLR_BIT(DDRB_REG,pin);
+ 1c4:	47 b3       	in	r20, 0x17	; 23
+ 1c6:	21 e0       	ldi	r18, 0x01	; 1
+ 1c8:	30 e0       	ldi	r19, 0x00	; 0
+ 1ca:	b9 01       	movw	r22, r18
+ 1cc:	02 c0       	rjmp	.+4      	; 0x1d2 <Set_Channel_Direction+0xa2>
+ 1ce:	66 0f       	add	r22, r22
+ 1d0:	77 1f       	adc	r23, r23
+ 1d2:	9a 95       	dec	r25
+ 1d4:	e2 f7       	brpl	.-8      	; 0x1ce <Set_Channel_Direction+0x9e>
+ 1d6:	cb 01       	movw	r24, r22
+ 1d8:	80 95       	com	r24
+ 1da:	94 2f       	mov	r25, r20
+ 1dc:	98 23       	and	r25, r24
+ 1de:	97 bb       	out	0x17, r25	; 23
+			CLR_BIT(PORTB_REG,pin);
+ 1e0:	98 b3       	in	r25, 0x18	; 24
+ 1e2:	89 23       	and	r24, r25
+ 1e4:	88 bb       	out	0x18, r24	; 24
+ 1e6:	08 95       	ret
+		}
+		else if(Direction == PULL_UP)
+ 1e8:	62 30       	cpi	r22, 0x02	; 2
+ 1ea:	91 f4       	brne	.+36     	; 0x210 <Set_Channel_Direction+0xe0>
+		{
+			CLR_BIT(DDRB_REG,pin);
+ 1ec:	47 b3       	in	r20, 0x17	; 23
+ 1ee:	21 e0       	ldi	r18, 0x01	; 1
+ 1f0:	30 e0       	ldi	r19, 0x00	; 0
+ 1f2:	b9 01       	movw	r22, r18
+ 1f4:	02 c0       	rjmp	.+4      	; 0x1fa <Set_Channel_Direction+0xca>
+ 1f6:	66 0f       	add	r22, r22
+ 1f8:	77 1f       	adc	r23, r23
+ 1fa:	9a 95       	dec	r25
+ 1fc:	e2 f7       	brpl	.-8      	; 0x1f6 <Set_Channel_Direction+0xc6>
+ 1fe:	cb 01       	movw	r24, r22
+ 200:	96 2f       	mov	r25, r22
+ 202:	90 95       	com	r25
+ 204:	94 23       	and	r25, r20
+ 206:	97 bb       	out	0x17, r25	; 23
+			SET_BIT(PORTB_REG,pin);
+ 208:	98 b3       	in	r25, 0x18	; 24
+ 20a:	89 2b       	or	r24, r25
+ 20c:	88 bb       	out	0x18, r24	; 24
+ 20e:	08 95       	ret
+		}	
+		else if(Direction == OUTPUT)
+ 210:	61 30       	cpi	r22, 0x01	; 1
+ 212:	09 f0       	breq	.+2      	; 0x216 <Set_Channel_Direction+0xe6>
+ 214:	7b c0       	rjmp	.+246    	; 0x30c <Set_Channel_Direction+0x1dc>
+		SET_BIT(DDRB_REG,pin);
+ 216:	47 b3       	in	r20, 0x17	; 23
+ 218:	21 e0       	ldi	r18, 0x01	; 1
+ 21a:	30 e0       	ldi	r19, 0x00	; 0
+ 21c:	b9 01       	movw	r22, r18
+ 21e:	02 c0       	rjmp	.+4      	; 0x224 <Set_Channel_Direction+0xf4>
+ 220:	66 0f       	add	r22, r22
+ 222:	77 1f       	adc	r23, r23
+ 224:	9a 95       	dec	r25
+ 226:	e2 f7       	brpl	.-8      	; 0x220 <Set_Channel_Direction+0xf0>
+ 228:	cb 01       	movw	r24, r22
+ 22a:	84 2b       	or	r24, r20
+ 22c:	87 bb       	out	0x17, r24	; 23
+ 22e:	08 95       	ret
+		break;
+		case PC:
+		if(Direction == INPUT)	
+ 230:	61 11       	cpse	r22, r1
+ 232:	12 c0       	rjmp	.+36     	; 0x258 <Set_Channel_Direction+0x128>
+		{
+			CLR_BIT(DDRC_REG,pin);
+ 234:	44 b3       	in	r20, 0x14	; 20
+ 236:	21 e0       	ldi	r18, 0x01	; 1
+ 238:	30 e0       	ldi	r19, 0x00	; 0
+ 23a:	b9 01       	movw	r22, r18
+ 23c:	02 c0       	rjmp	.+4      	; 0x242 <Set_Channel_Direction+0x112>
+ 23e:	66 0f       	add	r22, r22
+ 240:	77 1f       	adc	r23, r23
+ 242:	9a 95       	dec	r25
+ 244:	e2 f7       	brpl	.-8      	; 0x23e <Set_Channel_Direction+0x10e>
+ 246:	cb 01       	movw	r24, r22
+ 248:	80 95       	com	r24
+ 24a:	94 2f       	mov	r25, r20
+ 24c:	98 23       	and	r25, r24
+ 24e:	94 bb       	out	0x14, r25	; 20
+			CLR_BIT(PORTC_REG,pin);
+ 250:	95 b3       	in	r25, 0x15	; 21
+ 252:	89 23       	and	r24, r25
+ 254:	85 bb       	out	0x15, r24	; 21
+ 256:	08 95       	ret
+		}
+		else if(Direction == PULL_UP)
+ 258:	62 30       	cpi	r22, 0x02	; 2
+ 25a:	91 f4       	brne	.+36     	; 0x280 <Set_Channel_Direction+0x150>
+		{
+			CLR_BIT(DDRC_REG,pin);
+ 25c:	44 b3       	in	r20, 0x14	; 20
+ 25e:	21 e0       	ldi	r18, 0x01	; 1
+ 260:	30 e0       	ldi	r19, 0x00	; 0
+ 262:	b9 01       	movw	r22, r18
+ 264:	02 c0       	rjmp	.+4      	; 0x26a <Set_Channel_Direction+0x13a>
+ 266:	66 0f       	add	r22, r22
+ 268:	77 1f       	adc	r23, r23
+ 26a:	9a 95       	dec	r25
+ 26c:	e2 f7       	brpl	.-8      	; 0x266 <Set_Channel_Direction+0x136>
+ 26e:	cb 01       	movw	r24, r22
+ 270:	96 2f       	mov	r25, r22
+ 272:	90 95       	com	r25
+ 274:	94 23       	and	r25, r20
+ 276:	94 bb       	out	0x14, r25	; 20
+			SET_BIT(PORTC_REG,pin);
+ 278:	95 b3       	in	r25, 0x15	; 21
+ 27a:	89 2b       	or	r24, r25
+ 27c:	85 bb       	out	0x15, r24	; 21
+ 27e:	08 95       	ret
+		}
+		else if(Direction == OUTPUT)
+ 280:	61 30       	cpi	r22, 0x01	; 1
+ 282:	09 f0       	breq	.+2      	; 0x286 <Set_Channel_Direction+0x156>
+ 284:	43 c0       	rjmp	.+134    	; 0x30c <Set_Channel_Direction+0x1dc>
+		SET_BIT(DDRC_REG,pin);
+ 286:	44 b3       	in	r20, 0x14	; 20
+ 288:	21 e0       	ldi	r18, 0x01	; 1
+ 28a:	30 e0       	ldi	r19, 0x00	; 0
+ 28c:	b9 01       	movw	r22, r18
+ 28e:	02 c0       	rjmp	.+4      	; 0x294 <Set_Channel_Direction+0x164>
+ 290:	66 0f       	add	r22, r22
+ 292:	77 1f       	adc	r23, r23
+ 294:	9a 95       	dec	r25
+ 296:	e2 f7       	brpl	.-8      	; 0x290 <Set_Channel_Direction+0x160>
+ 298:	cb 01       	movw	r24, r22
+ 29a:	84 2b       	or	r24, r20
+ 29c:	84 bb       	out	0x14, r24	; 20
+ 29e:	08 95       	ret
+		break;
+		case PD:
+		if(Direction == INPUT)	
+ 2a0:	61 11       	cpse	r22, r1
+ 2a2:	12 c0       	rjmp	.+36     	; 0x2c8 <Set_Channel_Direction+0x198>
+		{
+			CLR_BIT(DDRD_REG,pin);
+ 2a4:	41 b3       	in	r20, 0x11	; 17
+ 2a6:	21 e0       	ldi	r18, 0x01	; 1
+ 2a8:	30 e0       	ldi	r19, 0x00	; 0
+ 2aa:	b9 01       	movw	r22, r18
+ 2ac:	02 c0       	rjmp	.+4      	; 0x2b2 <Set_Channel_Direction+0x182>
+ 2ae:	66 0f       	add	r22, r22
+ 2b0:	77 1f       	adc	r23, r23
+ 2b2:	9a 95       	dec	r25
+ 2b4:	e2 f7       	brpl	.-8      	; 0x2ae <Set_Channel_Direction+0x17e>
+ 2b6:	cb 01       	movw	r24, r22
+ 2b8:	80 95       	com	r24
+ 2ba:	94 2f       	mov	r25, r20
+ 2bc:	98 23       	and	r25, r24
+ 2be:	91 bb       	out	0x11, r25	; 17
+			CLR_BIT(PORTD_REG,pin);
+ 2c0:	92 b3       	in	r25, 0x12	; 18
+ 2c2:	89 23       	and	r24, r25
+ 2c4:	82 bb       	out	0x12, r24	; 18
+ 2c6:	08 95       	ret
+		}
+		else if(Direction == PULL_UP)
+ 2c8:	62 30       	cpi	r22, 0x02	; 2
+ 2ca:	91 f4       	brne	.+36     	; 0x2f0 <Set_Channel_Direction+0x1c0>
+		{
+			CLR_BIT(DDRD_REG,pin);
+ 2cc:	41 b3       	in	r20, 0x11	; 17
+ 2ce:	21 e0       	ldi	r18, 0x01	; 1
+ 2d0:	30 e0       	ldi	r19, 0x00	; 0
+ 2d2:	b9 01       	movw	r22, r18
+ 2d4:	02 c0       	rjmp	.+4      	; 0x2da <Set_Channel_Direction+0x1aa>
+ 2d6:	66 0f       	add	r22, r22
+ 2d8:	77 1f       	adc	r23, r23
+ 2da:	9a 95       	dec	r25
+ 2dc:	e2 f7       	brpl	.-8      	; 0x2d6 <Set_Channel_Direction+0x1a6>
+ 2de:	cb 01       	movw	r24, r22
+ 2e0:	96 2f       	mov	r25, r22
+ 2e2:	90 95       	com	r25
+ 2e4:	94 23       	and	r25, r20
+ 2e6:	91 bb       	out	0x11, r25	; 17
+			SET_BIT(PORTD_REG,pin);
+ 2e8:	92 b3       	in	r25, 0x12	; 18
+ 2ea:	89 2b       	or	r24, r25
+ 2ec:	82 bb       	out	0x12, r24	; 18
+ 2ee:	08 95       	ret
+		}
+		else if(Direction == OUTPUT)
+ 2f0:	61 30       	cpi	r22, 0x01	; 1
+ 2f2:	61 f4       	brne	.+24     	; 0x30c <Set_Channel_Direction+0x1dc>
+		SET_BIT(DDRD_REG,pin);
+ 2f4:	41 b3       	in	r20, 0x11	; 17
+ 2f6:	21 e0       	ldi	r18, 0x01	; 1
+ 2f8:	30 e0       	ldi	r19, 0x00	; 0
+ 2fa:	b9 01       	movw	r22, r18
+ 2fc:	02 c0       	rjmp	.+4      	; 0x302 <Set_Channel_Direction+0x1d2>
+ 2fe:	66 0f       	add	r22, r22
+ 300:	77 1f       	adc	r23, r23
+ 302:	9a 95       	dec	r25
+ 304:	e2 f7       	brpl	.-8      	; 0x2fe <Set_Channel_Direction+0x1ce>
+ 306:	cb 01       	movw	r24, r22
+ 308:	84 2b       	or	r24, r20
+ 30a:	81 bb       	out	0x11, r24	; 17
+ 30c:	08 95       	ret
+
+0000030e <Write_Channel>:
+}
+
+void Write_Channel(DIO_Channel Ch_ID ,STD_Level Level)
+{
+    uint8 port = Ch_ID/8 ;
+    uint8 pin = Ch_ID%8 ;
+ 30e:	98 2f       	mov	r25, r24
+ 310:	97 70       	andi	r25, 0x07	; 7
+	
+	switch(port)
+ 312:	86 95       	lsr	r24
+ 314:	86 95       	lsr	r24
+ 316:	86 95       	lsr	r24
+ 318:	81 30       	cpi	r24, 0x01	; 1
+ 31a:	41 f1       	breq	.+80     	; 0x36c <Write_Channel+0x5e>
+ 31c:	38 f0       	brcs	.+14     	; 0x32c <Write_Channel+0x1e>
+ 31e:	82 30       	cpi	r24, 0x02	; 2
+ 320:	09 f4       	brne	.+2      	; 0x324 <Write_Channel+0x16>
+ 322:	44 c0       	rjmp	.+136    	; 0x3ac <Write_Channel+0x9e>
+ 324:	83 30       	cpi	r24, 0x03	; 3
+ 326:	09 f4       	brne	.+2      	; 0x32a <Write_Channel+0x1c>
+ 328:	60 c0       	rjmp	.+192    	; 0x3ea <Write_Channel+0xdc>
+ 32a:	08 95       	ret
+	{
+		case PA:
+		if(Level == LOW)		CLR_BIT(PORTA_REG,pin);
+ 32c:	61 11       	cpse	r22, r1
+ 32e:	0e c0       	rjmp	.+28     	; 0x34c <Write_Channel+0x3e>
+ 330:	4b b3       	in	r20, 0x1b	; 27
+ 332:	21 e0       	ldi	r18, 0x01	; 1
+ 334:	30 e0       	ldi	r19, 0x00	; 0
+ 336:	b9 01       	movw	r22, r18
+ 338:	02 c0       	rjmp	.+4      	; 0x33e <Write_Channel+0x30>
+ 33a:	66 0f       	add	r22, r22
+ 33c:	77 1f       	adc	r23, r23
+ 33e:	9a 95       	dec	r25
+ 340:	e2 f7       	brpl	.-8      	; 0x33a <Write_Channel+0x2c>
+ 342:	cb 01       	movw	r24, r22
+ 344:	80 95       	com	r24
+ 346:	84 23       	and	r24, r20
+ 348:	8b bb       	out	0x1b, r24	; 27
+ 34a:	08 95       	ret
+		else if(Level == HIGH)	SET_BIT(PORTA_REG,pin);
+ 34c:	61 30       	cpi	r22, 0x01	; 1
+ 34e:	09 f0       	breq	.+2      	; 0x352 <Write_Channel+0x44>
+ 350:	6a c0       	rjmp	.+212    	; 0x426 <__EEPROM_REGION_LENGTH__+0x26>
+ 352:	4b b3       	in	r20, 0x1b	; 27
+ 354:	21 e0       	ldi	r18, 0x01	; 1
+ 356:	30 e0       	ldi	r19, 0x00	; 0
+ 358:	b9 01       	movw	r22, r18
+ 35a:	02 c0       	rjmp	.+4      	; 0x360 <Write_Channel+0x52>
+ 35c:	66 0f       	add	r22, r22
+ 35e:	77 1f       	adc	r23, r23
+ 360:	9a 95       	dec	r25
+ 362:	e2 f7       	brpl	.-8      	; 0x35c <Write_Channel+0x4e>
+ 364:	cb 01       	movw	r24, r22
+ 366:	84 2b       	or	r24, r20
+ 368:	8b bb       	out	0x1b, r24	; 27
+ 36a:	08 95       	ret
+		break;
+		case PB:
+		if(Level == LOW)		CLR_BIT(PORTB_REG,pin);
+ 36c:	61 11       	cpse	r22, r1
+ 36e:	0e c0       	rjmp	.+28     	; 0x38c <Write_Channel+0x7e>
+ 370:	48 b3       	in	r20, 0x18	; 24
+ 372:	21 e0       	ldi	r18, 0x01	; 1
+ 374:	30 e0       	ldi	r19, 0x00	; 0
+ 376:	b9 01       	movw	r22, r18
+ 378:	02 c0       	rjmp	.+4      	; 0x37e <Write_Channel+0x70>
+ 37a:	66 0f       	add	r22, r22
+ 37c:	77 1f       	adc	r23, r23
+ 37e:	9a 95       	dec	r25
+ 380:	e2 f7       	brpl	.-8      	; 0x37a <Write_Channel+0x6c>
+ 382:	cb 01       	movw	r24, r22
+ 384:	80 95       	com	r24
+ 386:	84 23       	and	r24, r20
+ 388:	88 bb       	out	0x18, r24	; 24
+ 38a:	08 95       	ret
+		else if(Level == HIGH)	SET_BIT(PORTB_REG,pin);
+ 38c:	61 30       	cpi	r22, 0x01	; 1
+ 38e:	09 f0       	breq	.+2      	; 0x392 <Write_Channel+0x84>
+ 390:	4a c0       	rjmp	.+148    	; 0x426 <__EEPROM_REGION_LENGTH__+0x26>
+ 392:	48 b3       	in	r20, 0x18	; 24
+ 394:	21 e0       	ldi	r18, 0x01	; 1
+ 396:	30 e0       	ldi	r19, 0x00	; 0
+ 398:	b9 01       	movw	r22, r18
+ 39a:	02 c0       	rjmp	.+4      	; 0x3a0 <Write_Channel+0x92>
+ 39c:	66 0f       	add	r22, r22
+ 39e:	77 1f       	adc	r23, r23
+ 3a0:	9a 95       	dec	r25
+ 3a2:	e2 f7       	brpl	.-8      	; 0x39c <Write_Channel+0x8e>
+ 3a4:	cb 01       	movw	r24, r22
+ 3a6:	84 2b       	or	r24, r20
+ 3a8:	88 bb       	out	0x18, r24	; 24
+ 3aa:	08 95       	ret
+		break;
+		case PC:
+		if(Level == LOW)		CLR_BIT(PORTC_REG,pin);
+ 3ac:	61 11       	cpse	r22, r1
+ 3ae:	0e c0       	rjmp	.+28     	; 0x3cc <Write_Channel+0xbe>
+ 3b0:	45 b3       	in	r20, 0x15	; 21
+ 3b2:	21 e0       	ldi	r18, 0x01	; 1
+ 3b4:	30 e0       	ldi	r19, 0x00	; 0
+ 3b6:	b9 01       	movw	r22, r18
+ 3b8:	02 c0       	rjmp	.+4      	; 0x3be <Write_Channel+0xb0>
+ 3ba:	66 0f       	add	r22, r22
+ 3bc:	77 1f       	adc	r23, r23
+ 3be:	9a 95       	dec	r25
+ 3c0:	e2 f7       	brpl	.-8      	; 0x3ba <Write_Channel+0xac>
+ 3c2:	cb 01       	movw	r24, r22
+ 3c4:	80 95       	com	r24
+ 3c6:	84 23       	and	r24, r20
+ 3c8:	85 bb       	out	0x15, r24	; 21
+ 3ca:	08 95       	ret
+		else if(Level == HIGH)	SET_BIT(PORTC_REG,pin);
+ 3cc:	61 30       	cpi	r22, 0x01	; 1
+ 3ce:	59 f5       	brne	.+86     	; 0x426 <__EEPROM_REGION_LENGTH__+0x26>
+ 3d0:	45 b3       	in	r20, 0x15	; 21
+ 3d2:	21 e0       	ldi	r18, 0x01	; 1
+ 3d4:	30 e0       	ldi	r19, 0x00	; 0
+ 3d6:	b9 01       	movw	r22, r18
+ 3d8:	02 c0       	rjmp	.+4      	; 0x3de <Write_Channel+0xd0>
+ 3da:	66 0f       	add	r22, r22
+ 3dc:	77 1f       	adc	r23, r23
+ 3de:	9a 95       	dec	r25
+ 3e0:	e2 f7       	brpl	.-8      	; 0x3da <Write_Channel+0xcc>
+ 3e2:	cb 01       	movw	r24, r22
+ 3e4:	84 2b       	or	r24, r20
+ 3e6:	85 bb       	out	0x15, r24	; 21
+ 3e8:	08 95       	ret
+		break;
+		case PD:
+		if(Level == LOW)		CLR_BIT(PORTD_REG,pin);
+ 3ea:	61 11       	cpse	r22, r1
+ 3ec:	0e c0       	rjmp	.+28     	; 0x40a <__EEPROM_REGION_LENGTH__+0xa>
+ 3ee:	42 b3       	in	r20, 0x12	; 18
+ 3f0:	21 e0       	ldi	r18, 0x01	; 1
+ 3f2:	30 e0       	ldi	r19, 0x00	; 0
+ 3f4:	b9 01       	movw	r22, r18
+ 3f6:	02 c0       	rjmp	.+4      	; 0x3fc <Write_Channel+0xee>
+ 3f8:	66 0f       	add	r22, r22
+ 3fa:	77 1f       	adc	r23, r23
+ 3fc:	9a 95       	dec	r25
+ 3fe:	e2 f7       	brpl	.-8      	; 0x3f8 <Write_Channel+0xea>
+ 400:	cb 01       	movw	r24, r22
+ 402:	80 95       	com	r24
+ 404:	84 23       	and	r24, r20
+ 406:	82 bb       	out	0x12, r24	; 18
+ 408:	08 95       	ret
+		else if(Level == HIGH)	SET_BIT(PORTD_REG,pin);
+ 40a:	61 30       	cpi	r22, 0x01	; 1
+ 40c:	61 f4       	brne	.+24     	; 0x426 <__EEPROM_REGION_LENGTH__+0x26>
+ 40e:	42 b3       	in	r20, 0x12	; 18
+ 410:	21 e0       	ldi	r18, 0x01	; 1
+ 412:	30 e0       	ldi	r19, 0x00	; 0
+ 414:	b9 01       	movw	r22, r18
+ 416:	02 c0       	rjmp	.+4      	; 0x41c <__EEPROM_REGION_LENGTH__+0x1c>
+ 418:	66 0f       	add	r22, r22
+ 41a:	77 1f       	adc	r23, r23
+ 41c:	9a 95       	dec	r25
+ 41e:	e2 f7       	brpl	.-8      	; 0x418 <__EEPROM_REGION_LENGTH__+0x18>
+ 420:	cb 01       	movw	r24, r22
+ 422:	84 2b       	or	r24, r20
+ 424:	82 bb       	out	0x12, r24	; 18
+ 426:	08 95       	ret
+
+00000428 <_exit>:
+ 428:	f8 94       	cli
+
+0000042a <__stop_program>:
+ 42a:	ff cf       	rjmp	.-2      	; 0x42a <__stop_program>
