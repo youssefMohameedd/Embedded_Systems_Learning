@@ -18,7 +18,7 @@
 
 void LED_Init(DIO_Channel LED);
 void PushB_Init(DIO_Channel PushB);
-void Buzzer_Init(DIO_Channel Buzzer);
+void Buzzer_Init();
 void Write_LED (DIO_Channel LED , STD_Level Level);
 void Write_Buzzer(DIO_Channel Buzzer, STD_Level Level);
 STD_Level Debounced_Read_PushB (DIO_Channel PushB);

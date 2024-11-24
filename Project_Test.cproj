@@ -270,7 +270,7 @@
     <None Include="HAL\Mini-Projects\Mini-Project1.txt">
       <SubType>compile</SubType>
     </None>
-    <None Include="HAL\SSD\Exercises\EX1.sim1">
+    <None Include="HAL\SSD\Exercises\EX.sim1">
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\SSD\Exercises\Exercises.txt">

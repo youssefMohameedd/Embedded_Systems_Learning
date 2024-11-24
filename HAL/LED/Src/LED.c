@@ -20,7 +20,7 @@ void PushB_Init(DIO_Channel PushB)
 {
 	Set_Channel_Direction(PushB,INPUT);	
 }
-void Buzzer_Init(DIO_Channel Buzzer)
+void Buzzer_Init()
 {
 	Set_Channel_Direction(Buzzer,OUTPUT);
 	Write_Channel(Buzzer,LOW);
@@ -39,7 +39,7 @@ void Write_Buzzer(DIO_Channel Buzzer ,STD_Level Level)
 
 STD_Level Debounced_Read_PushB (DIO_Channel PushB)
 {
-	STD_Level Level;
+	
 	if(Read_Channel(PushB)== HIGH)
 	{
 		_delay_ms(50);

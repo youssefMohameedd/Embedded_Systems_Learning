@@ -53,9 +53,9 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../APP/main.c \
 ../HAL/LED/Src/LED.c \
 ../HAL/SSD/Src/SSD.c \
-../main.c \
 ../MCAL/DIO/Src/DIO.c
 
 
@@ -66,27 +66,27 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+APP/main.o \
 HAL/LED/Src/LED.o \
 HAL/SSD/Src/SSD.o \
-main.o \
 MCAL/DIO/Src/DIO.o
 
 OBJS_AS_ARGS +=  \
+APP/main.o \
 HAL/LED/Src/LED.o \
 HAL/SSD/Src/SSD.o \
-main.o \
 MCAL/DIO/Src/DIO.o
 
 C_DEPS +=  \
+APP/main.d \
 HAL/LED/Src/LED.d \
 HAL/SSD/Src/SSD.d \
-main.d \
 MCAL/DIO/Src/DIO.d
 
 C_DEPS_AS_ARGS +=  \
+APP/main.d \
 HAL/LED/Src/LED.d \
 HAL/SSD/Src/SSD.d \
-main.d \
 MCAL/DIO/Src/DIO.d
 
 OUTPUT_FILE_PATH +=Project_Test.elf
@@ -103,6 +103,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+APP/main.o: ../APP/main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 HAL/LED/Src/LED.o: ../HAL/LED/Src/LED.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -111,13 +118,6 @@ HAL/LED/Src/LED.o: ../HAL/LED/Src/LED.c
 	
 
 HAL/SSD/Src/SSD.o: ../HAL/SSD/Src/SSD.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
