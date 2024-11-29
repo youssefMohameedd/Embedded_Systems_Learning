@@ -1,18 +1,22 @@
 {
-  "configurations": [
-    {
-      "name": "windows-gcc-x86",
-      "includePath": [
-        "${workspaceFolder}/**"
-      ],
-      "compilerPath": "C:/MinGW/bin/gcc.exe",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "windows-gcc-x86",
-      "compilerArgs": [
-        ""
-      ]
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "windows-gcc-x86",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "D:\\Programming\\Embedded Systems\\AVR_Test101\\Project_Test",
+                "C:\\Program Files\\Microchip\\xc8\\v2.36\\avr\\avr\\include",
+                "C:\\Program Files\\Microchip\\xc8\\v2.36\\avr\\avr\\include\\util"
+            ],
+            "compilerPath": "C:/MinGW/bin/gcc.exe",
+            "cStandard": "${default}",
+            "cppStandard": "${default}",
+            "intelliSenseMode": "windows-gcc-x86",
+            "compilerArgs": [
+                ""
+            ],
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
 }

@@ -163,21 +163,21 @@ void Set_Port_Direction(DIO_Port Port_ID , uint8 Direction)
 	}
 }
 
-void Write_Port(DIO_Port Port_ID , uint8 value)
+void Write_Port(DIO_Port Port_ID , uint8 Value)
 {
 	switch(Port_ID)
 	{
 		case PA:	
-		PORTA_REG = value;
+		PORTA_REG = Value;
 		break;
 		case PB:	
-		PORTB_REG = value;
+		PORTB_REG = Value;
 		break;
 		case PC:	
-		PORTC_REG = value;
+		PORTC_REG = Value;
 		break;
 		case PD:	
-		PORTD_REG = value;
+		PORTD_REG = Value;
 		break;
 	}
 }
@@ -202,4 +202,21 @@ uint8 Read_Port(DIO_Port Port_ID)
 		break;
 	}
 	return value ;	
+}
+//Below Functions can be improved (Ask ChatGPT)
+uint8 Read_Nibble(DIO_Port Port_ID , uint8 Significance)
+{
+	
+	uint8 value = Read_Port(Port_ID);
+	if(Significance == HIGH)	value =  (value &0xF0) >> 4 ; 
+	else if (Significance == LOW) value = (value &0x0F) ;
+	
+
+	return value ;
+}
+
+void Write_Nibble(DIO_Port Port_ID , uint8 Significance , uint8 Value)
+{
+	Value = (Significance==HIGH)?(Read_Nibble(Port_ID,LOW)|(Value <<4)):((Read_Nibble(Port_ID,HIGH)<<4))|(Value);
+	Write_Port(Port_ID,Value);
 }

@@ -169,6 +169,8 @@
             <Value>../HAL/SSD</Value>
             <Value>../HAL/SSD/Headers</Value>
             <Value>../HAL/SSD/Src</Value>
+            <Value>../HAL/LCD/Headers</Value>
+            <Value>../HAL/LCD</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
         <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -206,6 +208,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="APP\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\Headers\LCD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\Headers\LCD_CFG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\Src\Backup.txt">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD\Src\LCD.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\LED\Headers\LED.h">
@@ -246,11 +260,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="HAL\LCD\Headers" />
+    <Folder Include="HAL\LCD\Exercises" />
+    <Folder Include="HAL\LCD\Src" />
     <Folder Include="HAL\LED" />
     <Folder Include="HAL\LED\Headers" />
     <Folder Include="HAL\LED\Exercises" />
     <Folder Include="HAL\LED\Src" />
     <Folder Include="HAL\Mini-Projects" />
+    <Folder Include="HAL\LCD" />
     <Folder Include="HAL\SSD" />
     <Folder Include="HAL\SSD\Headers" />
     <Folder Include="HAL\SSD\Exercises" />
@@ -264,6 +282,9 @@
     <Folder Include="MCAL\DIO\Src" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="HAL\LCD\Exercises\Exercises.txt">
+      <SubType>compile</SubType>
+    </None>
     <None Include="HAL\LED\Exercises\Exercises.txt">
       <SubType>compile</SubType>
     </None>

@@ -4,6 +4,8 @@
 
 APP\main.c
 
+HAL\LCD\Src\LCD.c
+
 HAL\LED\Src\LED.c
 
 HAL\SSD\Src\SSD.c

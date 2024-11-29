@@ -15,27 +15,18 @@
 #include <DIO_HW.h>
 
 
-void SSD_init()
+void SSD_init(void)
 {
 	Set_Channel_Direction(EN1 , OUTPUT);
 	Set_Channel_Direction(EN2 , OUTPUT);
 	Write_Channel(EN1,HIGH);
 	Write_Channel(EN2,LOW);
-	DDRA_REG |= 0xF0;
-	PORTA_REG &= 0x0F;
+	DDRA_REG |= 0xF0;  // for better practice you may define Get_Port_Direction Function and do extra operations
+	Write_Nibble(SSD_PORT,HIGH,0x0);// for better practice you may use Set_Port_Direction Function and do extra operations
 	
 }
 void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
 {
-	if(  value >= 0 && value < 10  )
-	{
-		uint8 PortData = PORTA_REG & 0x0F; 
-		value = value << 4 ;
-		PortData = PortData | value ;
-		PORTA_REG = PortData;
-	}
-	else	PORTA_REG &= 0x0F;
-	
 	switch(SSD_Number)
 	{
 		case SSD_1:
@@ -47,6 +38,17 @@ void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
 		Write_Channel(EN2,HIGH);
 		break;
 	}
+	// Modify the below statements to use Write_Nibble Funcion;
+	if(  value >= 0 && value < 10  )
+	{
+		uint8 PortData = Read_Port(PA) & 0x0F; 
+		value = value << 4 ;
+		PortData = PortData | value ;
+		Write_Port(PA,PortData);
+	}
+	else	PORTA_REG &= 0x0F;
+	
+	
 	
 	_delay_ms(10);
 	

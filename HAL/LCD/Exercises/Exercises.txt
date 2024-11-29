@@ -1,0 +1,27 @@
+/*
+ * Exercises.txt
+ *
+ * Created: 11/25/2024 12:01:30 PM
+ *  Author: Youssef
+ */ 
+
+
+ LCD_Init();
+	_delay_ms(1500);
+	
+	
+	
+	while(1)
+	{
+		uint8 arr[10] = "KatKot";
+		LCD_Write_Cmd(0x02);
+		for ( uint8 i = 0 ; i<6 ; i++)
+		{
+			LCD_Write_Char(arr[i]);
+			_delay_ms(250);
+		}
+		LCD_Write_Cmd(0x01);
+		_delay_ms(200);
+		
+		
+	}

@@ -59,6 +59,9 @@
   "files.associations": {
     "std_types.h": "c",
     "dio.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "io.h": "c",
+    "led.h": "c",
+    "ssd.h": "c"
   }
 }

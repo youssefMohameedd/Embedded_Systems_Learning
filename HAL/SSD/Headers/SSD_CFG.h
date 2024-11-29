@@ -9,6 +9,8 @@
 #ifndef SSD_CFG_H_
 #define SSD_CFG_H_
 
+#define SSD_PORT PA
+
 #define EN1 PB1
 #define EN2 PB2
 

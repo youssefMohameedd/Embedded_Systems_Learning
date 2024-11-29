@@ -40,12 +40,13 @@ void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
 }
 
 Exercise 1: 
-Display 1 Digit on 1 SSD with frequency
+Display 1 Digit on 1 SSD
 
 	SSD_Write_One_Digit(SSD_1,3);	
 
 
 Exercise 2:
+
 Display Numbers from 0 to 9 with increment every 1 second
 
 	for ( uint8 i =  0 ; i < 10 ; i++)
@@ -172,7 +173,10 @@ stop countdown at PushB2 repress
  * The function returns 0 to indicate successful execution.
  */
 
-SSD_init();
+
+int main(void)
+{	
+	SSD_init();
 	Buzzer_Init();
 	PushB_Init(PushB0);
 	PushB_Init(PushB1);
@@ -236,8 +240,10 @@ SSD_init();
 				if(!Flag) break;
 			}
 			
-				
 		}
 		
 		SSD_Write_Two_Digits(value);
 	}
+	
+	return 0;   
+}
