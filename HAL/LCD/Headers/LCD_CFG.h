@@ -19,6 +19,10 @@
 #define D6 PA6
 #define D7 PA7
 
+#define LINE_2_BASE_ADDRESS 0x40
+#define CGRAM_STEP 8
+
+
 #define DISPLAY_CLEAR  0x01
 #define FOUR_BIT_MODE   0x02
 #define RETURN_HOME 0x80

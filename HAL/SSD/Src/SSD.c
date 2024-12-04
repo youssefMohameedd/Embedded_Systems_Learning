@@ -27,6 +27,17 @@ void SSD_init(void)
 }
 void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
 {
+
+	// Modify the below statements to use Write_Nibble Funcion;
+	if(  value >= 0 && value < 10  )
+	{
+		uint8 PortData = Read_Port(PA) & 0x0F; 
+		value = value << 4 ;
+		PortData = PortData | value ;
+		Write_Port(PA,PortData);
+	}
+	else	PORTA_REG &= 0x0F;
+	
 	switch(SSD_Number)
 	{
 		case SSD_1:
@@ -38,17 +49,6 @@ void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
 		Write_Channel(EN2,HIGH);
 		break;
 	}
-	// Modify the below statements to use Write_Nibble Funcion;
-	if(  value >= 0 && value < 10  )
-	{
-		uint8 PortData = Read_Port(PA) & 0x0F; 
-		value = value << 4 ;
-		PortData = PortData | value ;
-		Write_Port(PA,PortData);
-	}
-	else	PORTA_REG &= 0x0F;
-	
-	
 	
 	_delay_ms(10);
 	
