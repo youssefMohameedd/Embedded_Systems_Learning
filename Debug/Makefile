@@ -33,6 +33,8 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../HAL/Keypad/Headers \
+../HAL/Keypad/Src \
 ../HAL/LCD/Headers \
 ../HAL/LCD/Exercises \
 ../HAL/LCD/Src \
@@ -42,6 +44,7 @@ SUBDIRS :=  \
 ../HAL/LED/Src \
 ../HAL/Mini-Projects \
 ../HAL/LCD \
+../HAL/Keypad \
 ../HAL/SSD \
 ../HAL/SSD/Headers \
 ../HAL/SSD/Exercises \
@@ -58,6 +61,7 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../APP/main.c \
+../HAL/Keypad/Src/Keypad.c \
 ../HAL/LCD/Src/LCD.c \
 ../HAL/LED/Src/LED.c \
 ../HAL/SSD/Src/SSD.c \
@@ -72,6 +76,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 APP/main.o \
+HAL/Keypad/Src/Keypad.o \
 HAL/LCD/Src/LCD.o \
 HAL/LED/Src/LED.o \
 HAL/SSD/Src/SSD.o \
@@ -79,6 +84,7 @@ MCAL/DIO/Src/DIO.o
 
 OBJS_AS_ARGS +=  \
 APP/main.o \
+HAL/Keypad/Src/Keypad.o \
 HAL/LCD/Src/LCD.o \
 HAL/LED/Src/LED.o \
 HAL/SSD/Src/SSD.o \
@@ -86,6 +92,7 @@ MCAL/DIO/Src/DIO.o
 
 C_DEPS +=  \
 APP/main.d \
+HAL/Keypad/Src/Keypad.d \
 HAL/LCD/Src/LCD.d \
 HAL/LED/Src/LED.d \
 HAL/SSD/Src/SSD.d \
@@ -93,6 +100,7 @@ MCAL/DIO/Src/DIO.d
 
 C_DEPS_AS_ARGS +=  \
 APP/main.d \
+HAL/Keypad/Src/Keypad.d \
 HAL/LCD/Src/LCD.d \
 HAL/LED/Src/LED.d \
 HAL/SSD/Src/SSD.d \
@@ -115,35 +123,42 @@ LINKER_SCRIPT_DEP+=
 APP/main.o: ../APP/main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD" -I"../HAL/Keypad/Src" -I"../HAL/Keypad/Headers" -I"../HAL/Keypad"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/Keypad/Src/Keypad.o: ../HAL/Keypad/Src/Keypad.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD" -I"../HAL/Keypad/Src" -I"../HAL/Keypad/Headers" -I"../HAL/Keypad"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 HAL/LCD/Src/LCD.o: ../HAL/LCD/Src/LCD.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD" -I"../HAL/Keypad/Src" -I"../HAL/Keypad/Headers" -I"../HAL/Keypad"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 HAL/LED/Src/LED.o: ../HAL/LED/Src/LED.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD" -I"../HAL/Keypad/Src" -I"../HAL/Keypad/Headers" -I"../HAL/Keypad"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 HAL/SSD/Src/SSD.o: ../HAL/SSD/Src/SSD.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD" -I"../HAL/Keypad/Src" -I"../HAL/Keypad/Headers" -I"../HAL/Keypad"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 MCAL/DIO/Src/DIO.o: ../MCAL/DIO/Src/DIO.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=STK600_MEGA  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src" -I"../src/config" -I"../LIB" -I"../MCAL" -I"../MCAL/DIO/Header" -I"../MCAL/DIO/Src" -I"../HAL/LED/Headers" -I"../HAL/LED/Src" -I"../HAL" -I"../HAL/LED" -I"../HAL/SSD" -I"../HAL/SSD/Headers" -I"../HAL/SSD/Src" -I"../HAL/LCD/Headers" -I"../HAL/LCD" -I"../HAL/Keypad/Src" -I"../HAL/Keypad/Headers" -I"../HAL/Keypad"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

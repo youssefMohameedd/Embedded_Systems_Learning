@@ -1,0 +1,35 @@
+
+/*
+ * Backup.txt
+ *
+ * Created: 12/7/2024 2:14:04 AM
+ *  Author: Youssef
+ */ 
+
+
+ 
+// we needn't use the debounced Push-Button function, as halting CPU performance wouldn't
+//affect the Data Display of the LCD
+uint8 Keypad_Read_Char(void)
+{
+	
+	for (uint8 i = 0 ; i<4 ; i++)
+	{
+		Write_Channel(r1-i,LOW);
+		
+		for(uint8 j = 0 ; j<4 ;j++)
+		{
+			if(Read_Channel(c1-i)==0)
+			{
+				while(Read_Channel(c1-i)==0);
+				return KeyPad[i][j];
+			}
+			
+		}
+		
+		Write_Channel(r1-i,HIGH);
+		
+	}
+	return 'N';
+	
+}

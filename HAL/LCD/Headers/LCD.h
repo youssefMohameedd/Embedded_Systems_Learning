@@ -11,6 +11,8 @@
 
 #include <STD_Types.h>
 
+
+
 void LCD_Latch(void);
 void LCD_Init(void);
 void LCD_Write_Cmd(uint8 cmd);

@@ -51,7 +51,6 @@ void LCD_Init(void) {
 	LCD_Write_Cmd(DISPLAY_CLEAR); // Returns Home by Default
 	LCD_Write_Cmd(ENTRY_MODE_SET);
 	
-	_delay_ms(5);
 	
 }
 

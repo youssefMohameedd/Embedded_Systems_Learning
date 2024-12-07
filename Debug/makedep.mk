@@ -4,6 +4,8 @@
 
 APP\main.c
 
+HAL\Keypad\Src\Keypad.c
+
 HAL\LCD\Src\LCD.c
 
 HAL\LED\Src\LED.c

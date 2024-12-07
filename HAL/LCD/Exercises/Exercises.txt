@@ -6,22 +6,99 @@
  */ 
 
 
+Useful external functions : itoa ( used for integers) - sprintf(used for float numbers)
+
+ Ex:0 
+ write the implementation of the following functions:
+ LCD_Write_Str - LCD_Write_Number - LCD_Mov_Pos - LCD_Store_Special_Char
+ uint8 sym1[8] = {0x00,0x0A,0x15,0x11,0x0A,0x04,0x00,0x00};
+
+ Ex:1 
+ display numbers from 0 to 99 with increment of 1 every 1 second
+
  LCD_Init();
-	_delay_ms(1500);
+	_delay_ms(10);
 	
+	uint8 Initial_Pos = 3;
+	uint8 Label[] = "Temp:";
+	uint8 Value = 0;
 	
+	LCD_Move_Pos(0,Initial_Pos);
+	LCD_Write_Str(Label);
 	
 	while(1)
 	{
-		uint8 arr[10] = "KatKot";
-		LCD_Write_Cmd(0x02);
-		for ( uint8 i = 0 ; i<6 ; i++)
+		for (Value = 0; Value <100 ; Value++)
 		{
-			LCD_Write_Char(arr[i]);
+			LCD_Write_Number(Value);
+			LCD_Move_Pos(0,Initial_Pos+sizeof(Label)-1);
 			_delay_ms(250);
 		}
-		LCD_Write_Cmd(0x01);
-		_delay_ms(200);
-		
+
+
 		
 	}
+	
+
+ Ex:2
+ Display a number with increment by PushB0
+
+ 	PushB_Init(PushB0);
+	LCD_Init();
+	_delay_ms(10);
+	
+	uint8 Initial_Pos = 3;
+	uint8 Label[] = "Temp:";
+	uint8 Value = 0;
+	uint8 PushB0_Status = 0;
+	
+	LCD_Move_Pos(0,Initial_Pos);
+	LCD_Write_Str(Label);
+	
+	while(1)
+	{
+		if(PushB0_Status == 0 && Debounced_Read_PushB(PushB0))
+		{
+			Value++;
+			PushB0_Status = 1;
+		}
+		else if(!Debounced_Read_PushB(PushB0)) PushB0_Status = 0; 
+		
+		LCD_Write_Number(Value);
+		LCD_Move_Pos(0,Initial_Pos+sizeof(Label)-1);
+			
+	}
+
+Ex3 : Display the binary code of the active pushbuttons
+	PushB_Init(PushB0);
+	PushB_Init(PushB1);
+	PushB_Init(PushB2);
+	LCD_Init();
+	_delay_ms(10);
+	
+	uint8 Initial_Pos = 3;
+	uint8 Label[] = "Temp:";
+	uint8 Value = 0;
+	uint8 PushB0_Status = 0;
+	
+	LCD_Move_Pos(0,Initial_Pos);
+	LCD_Write_Str(Label);
+	
+	while(1)
+	{
+		if(Debounced_Read_PushB(PushB0))	SET_BIT(Value,0);
+		else if(!Debounced_Read_PushB(PushB0)) CLR_BIT(Value,0);
+		
+		if(Debounced_Read_PushB(PushB1))	SET_BIT(Value,1);
+		else if(!Debounced_Read_PushB(PushB1)) CLR_BIT(Value,1);
+		
+		if(Debounced_Read_PushB(PushB2))	SET_BIT(Value,2);
+		else if(!Debounced_Read_PushB(PushB2)) CLR_BIT(Value,2);
+	
+		
+		LCD_Write_Number(Value);
+		LCD_Move_Pos(0,Initial_Pos+sizeof(Label)-1);
+
+			
+	}
+	

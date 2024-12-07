@@ -15,17 +15,22 @@
 #include <LED.h>
 #include <LCD.h>
 #include <LCD_CFG.h>
+#include <Bit_Math.h>
+
+#include <Keypad.h>
 
 int main(void)
 {	
-	
-	
+	LCD_Init();
+	_delay_ms(5);
+	Keypad_Init();
+	uint8 val ;
 	while(1)
 	{
-
-
+		val = Keypad_Read_Char();
+		if(val != 'N') LCD_Write_Char(val);
+		_delay_ms(5);
 		
 	}
-	
 	return 0;   
 }
