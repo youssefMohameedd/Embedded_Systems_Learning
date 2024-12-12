@@ -11,6 +11,11 @@
 
 #include <DIO.h>
 #include <util/delay.h>
+// Important Note: 
+// When you connect keypad to the board, make sure it doesn't interfere with any
+//LED or PushButton pins as they disturb its operation.
+//I have wasted 50 EGP for thinking that the keypad isn't functioning 
+//and I hope you don't :)
 
 #define r1 PB7
 #define r2 PB6
