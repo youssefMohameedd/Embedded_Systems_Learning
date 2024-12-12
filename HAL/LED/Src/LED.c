@@ -14,7 +14,7 @@
 void LED_Init(DIO_Channel LED)
 {
 	Set_Channel_Direction(LED,OUTPUT);
-	Write_Channel(LED,LOW);
+	//Write_Channel(LED,LOW);
 }
 void PushB_Init(DIO_Channel PushB)
 {

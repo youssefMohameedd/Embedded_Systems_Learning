@@ -1,13 +1,49 @@
-
 /*
- * Backup.txt
+ * Keypad.c
  *
- * Created: 12/7/2024 2:14:04 AM
+ * Created: 12/6/2024 4:07:10 PM
  *  Author: Youssef
  */ 
 
+#ifndef F_CPU
+#define F_CPU 16000000UL
+#endif
 
- 
+#include <DIO.h>
+#include <util/delay.h>
+
+#define r1 PC7
+#define r2 PC6
+#define r3 PC5
+#define r4 PC4
+
+#define c1 PC3
+#define c2 PC2
+#define c3 PC1
+#define c4 PC0
+
+
+
+uint8 rows[4] = {r1,r2,r3,r4};
+uint8 cols[4] = {c1,c2,c3,c4};
+
+uint8 KeyPad[4][4]={{'1','2','3','A'},
+{'4','5','6','B'},
+{'7','8','9','C'},
+{'*','0','#','D'}};
+
+
+
+void Keypad_Init(void)
+{	Set_Port_Direction(PC,0xF0);
+	for(uint8 i = 0 ; i<4 ; i++)
+	{
+		Write_Channel(rows[i],HIGH);
+		Write_Channel(cols[i],HIGH);
+	}
+	_delay_ms(5);
+}
+
 // we needn't use the debounced Push-Button function, as halting CPU performance wouldn't
 //affect the Data Display of the LCD
 uint8 Keypad_Read_Char(void)
@@ -15,19 +51,24 @@ uint8 Keypad_Read_Char(void)
 	
 	for (uint8 i = 0 ; i<4 ; i++)
 	{
-		Write_Channel(r1-i,LOW);
+		Write_Channel(rows[i],LOW);
+		_delay_ms(2);
 		
-		for(uint8 j = 0 ; j<4 ;j++)
+		for(uint8 j =0 ; j<4 ; j++)
 		{
-			if(Read_Channel(c1-i)==0)
+			if(Read_Channel(cols[j])==LOW)
 			{
-				while(Read_Channel(c1-i)==0);
+				_delay_ms(10);  // Wait for debounce
+   				if (Read_Channel(cols[j]) == LOW)
+				{
+				while(Read_Channel(cols[j])==LOW);
 				return KeyPad[i][j];
+				}
 			}
-			
 		}
 		
-		Write_Channel(r1-i,HIGH);
+		Write_Channel(rows[i],HIGH);
+		_delay_ms(2);
 		
 	}
 	return 'N';
