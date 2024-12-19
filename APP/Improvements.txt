@@ -1,0 +1,15 @@
+
+/*
+ * Improvements.txt
+ *
+ * Created: 12/19/2024 12:55:54 AM
+ *  Author: Youssef
+ */ 
+
+
+Edits:
+ 
+3-Edit Stepper Motor driver : Passing angle , speed(+ve or -ve to determine direction)
+4-Rewrite ADC driver to make it as configurable as possible using only 1 file
+5- File inclusions (modules include only 1 header file for more readability)
+6- Functions Documentations (parameters and brief description)

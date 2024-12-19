@@ -23,7 +23,7 @@
 #define CGRAM_STEP 8
 
 
-#define DISPLAY_CLEAR  0x01
+#define DISPLAY_CLEAR  0x01 // already move cursor to (0,0)
 #define FOUR_BIT_MODE   0x02
 #define RETURN_HOME 0x80
 #define ENTRY_MODE_SET 0b00000110 //, ID:Increment - SH :Cursor

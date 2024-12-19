@@ -50,16 +50,10 @@ uint8 KeyPad[4][4]={{'1','2','3','A'},
 
 void Keypad_Init(void)
 {
-	Set_Channel_Direction(r1,OUTPUT);
-	Set_Channel_Direction(r2,OUTPUT);
-	Set_Channel_Direction(r3,OUTPUT);
-	Set_Channel_Direction(r4,OUTPUT);
-	
+	for(uint8 i = 0 ; i<4 ; i++) Set_Channel_Direction(rows[i],OUTPUT);	
 	
 	#if(KEYPAD_INIT_MODE == PULL_UP)
 	{
-	
-		
 		for(uint8 i = 0 ; i<4 ; i++)
 		{
 			// for some reason, the keypad is not working properly with the pull-up configuration in the Set_Channel_Direction function
@@ -70,9 +64,6 @@ void Keypad_Init(void)
 			Write_Channel(rows[i],HIGH);
 			
 		}
-	
-
-	
 	}
 	#elif (KEYPAD_INIT_MODE == INPUT)
 	{

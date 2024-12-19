@@ -137,76 +137,81 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGcc>
-  <avrgcc.common.Device>-mmcu=atmega32 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32"</avrgcc.common.Device>
-  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
-  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
-  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
-  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
-  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
-  <avrgcc.compiler.symbols.DefSymbols>
-    <ListValues>
-      <Value>DEBUG</Value>
-      <Value>BOARD=STK600_MEGA</Value>
-    </ListValues>
-  </avrgcc.compiler.symbols.DefSymbols>
-  <avrgcc.compiler.directories.IncludePaths>
-    <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\include\</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/mega/utils/preprocessor</Value>
-      <Value>../src/ASF/mega/utils</Value>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src</Value>
-      <Value>../src/config</Value>
-      <Value>../LIB</Value>
-      <Value>../MCAL</Value>
-      <Value>../MCAL/DIO/Header</Value>
-      <Value>../MCAL/DIO/Src</Value>
-      <Value>../HAL/LED/Headers</Value>
-      <Value>../HAL/LED/Src</Value>
-      <Value>../HAL</Value>
-      <Value>../HAL/LED</Value>
-      <Value>../HAL/SSD</Value>
-      <Value>../HAL/SSD/Headers</Value>
-      <Value>../HAL/SSD/Src</Value>
-      <Value>../HAL/LCD/Headers</Value>
-      <Value>../HAL/LCD</Value>
-      <Value>../HAL/Keypad/Src</Value>
-      <Value>../HAL/Keypad/Headers</Value>
-      <Value>../HAL/Keypad</Value>
-    </ListValues>
-  </avrgcc.compiler.directories.IncludePaths>
-  <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
-  <avrgcc.compiler.optimization.OtherFlags>-fdata-sections</avrgcc.compiler.optimization.OtherFlags>
-  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
-  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
-  <avrgcc.compiler.optimization.DebugLevel>Maximum (-g3)</avrgcc.compiler.optimization.DebugLevel>
-  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
-  <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
-  <avrgcc.linker.libraries.Libraries>
-    <ListValues>
-      <Value>libm</Value>
-      <Value>libprintf_flt</Value>
-      <Value>libprintf_min</Value>
-      <Value>libscanf_flt</Value>
-      <Value>libscanf_min</Value>
-    </ListValues>
-  </avrgcc.linker.libraries.Libraries>
-  <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
-  <avrgcc.assembler.general.AssemblerFlags>-mrelax -DBOARD=STK600_MEGA</avrgcc.assembler.general.AssemblerFlags>
-  <avrgcc.assembler.general.IncludePaths>
-    <ListValues>
-      <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\include\</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/mega/utils/preprocessor</Value>
-      <Value>../src/ASF/mega/utils</Value>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src</Value>
-      <Value>../src/config</Value>
-    </ListValues>
-  </avrgcc.assembler.general.IncludePaths>
-  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
-</AvrGcc>
+        <avrgcc.common.Device>-mmcu=atmega32 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32"</avrgcc.common.Device>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>DEBUG</Value>
+            <Value>BOARD=STK600_MEGA</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\include\</Value>
+            <Value>../src/ASF/common/boards</Value>
+            <Value>../src/ASF/mega/utils/preprocessor</Value>
+            <Value>../src/ASF/mega/utils</Value>
+            <Value>../src/ASF/common/utils</Value>
+            <Value>../src</Value>
+            <Value>../src/config</Value>
+            <Value>../LIB</Value>
+            <Value>../MCAL</Value>
+            <Value>../MCAL/DIO/Header</Value>
+            <Value>../MCAL/DIO/Src</Value>
+            <Value>../HAL/LED/Headers</Value>
+            <Value>../HAL/LED/Src</Value>
+            <Value>../HAL</Value>
+            <Value>../HAL/LED</Value>
+            <Value>../HAL/SSD</Value>
+            <Value>../HAL/SSD/Headers</Value>
+            <Value>../HAL/SSD/Src</Value>
+            <Value>../HAL/LCD/Headers</Value>
+            <Value>../HAL/LCD</Value>
+            <Value>../HAL/Keypad/Src</Value>
+            <Value>../HAL/Keypad/Headers</Value>
+            <Value>../HAL/Keypad</Value>
+            <Value>../HAL/Stepper Motor/Src</Value>
+            <Value>../HAL/Stepper Motor/Headers</Value>
+            <Value>../MCAL/ADC</Value>
+            <Value>../MCAL/ADC/Headers</Value>
+            <Value>../MCAL/ADC/Src</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.OtherFlags>-fdata-sections</avrgcc.compiler.optimization.OtherFlags>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.optimization.DebugLevel>Maximum (-g3)</avrgcc.compiler.optimization.DebugLevel>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax</avrgcc.compiler.miscellaneous.OtherFlags>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+            <Value>libprintf_flt</Value>
+            <Value>libprintf_min</Value>
+            <Value>libscanf_flt</Value>
+            <Value>libscanf_min</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.linker.miscellaneous.LinkerFlags>-Wl,--relax</avrgcc.linker.miscellaneous.LinkerFlags>
+        <avrgcc.assembler.general.AssemblerFlags>-mrelax -DBOARD=STK600_MEGA</avrgcc.assembler.general.AssemblerFlags>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\ATmega_DFP\1.7.374\include\</Value>
+            <Value>../src/ASF/common/boards</Value>
+            <Value>../src/ASF/mega/utils/preprocessor</Value>
+            <Value>../src/ASF/mega/utils</Value>
+            <Value>../src/ASF/common/utils</Value>
+            <Value>../src</Value>
+            <Value>../src/config</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+        <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+      </AvrGcc>
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
@@ -223,9 +228,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\LCD\Headers\LCD_CFG.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="HAL\LCD\Src\Backup.txt">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\LCD\Src\LCD.c">
@@ -249,10 +251,28 @@
     <Compile Include="HAL\SSD\Src\SSD.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\Stepper Motor\Headers\Stepper.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\Stepper Motor\Src\Stepper.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="LIB\Bit_Math.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="LIB\STD_Types.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\Headers\ADC.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\Headers\ADC_CFG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\Headers\ADC_HW.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\ADC\Src\ADC.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\DIO\Header\DIO.h">
@@ -270,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HAL\Keypad\Headers" />
+    <Folder Include="HAL\Keypad\Exercises" />
     <Folder Include="HAL\Keypad\Src" />
     <Folder Include="HAL\LCD\Headers" />
     <Folder Include="HAL\LCD\Exercises" />
@@ -278,29 +299,47 @@
     <Folder Include="HAL\LED\Headers" />
     <Folder Include="HAL\LED\Exercises" />
     <Folder Include="HAL\LED\Src" />
+    <Folder Include="HAL\LM35\Exercises" />
     <Folder Include="HAL\Mini-Projects" />
     <Folder Include="HAL\LCD" />
     <Folder Include="HAL\Keypad" />
+    <Folder Include="HAL\LM35" />
+    <Folder Include="HAL\Stepper Motor" />
     <Folder Include="HAL\SSD" />
     <Folder Include="HAL\SSD\Headers" />
     <Folder Include="HAL\SSD\Exercises" />
     <Folder Include="HAL\SSD\Src" />
+    <Folder Include="HAL\Stepper Motor\Headers" />
+    <Folder Include="HAL\Stepper Motor\Exercises" />
+    <Folder Include="HAL\Stepper Motor\Src" />
     <Folder Include="LIB" />
     <Folder Include="MCAL" />
     <Folder Include="HAL" />
     <Folder Include="APP" />
+    <Folder Include="MCAL\ADC\Headers" />
+    <Folder Include="MCAL\ADC\Src" />
     <Folder Include="MCAL\DIO" />
     <Folder Include="MCAL\DIO\Header\" />
     <Folder Include="MCAL\DIO\Src" />
+    <Folder Include="MCAL\ADC" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="HAL\Keypad\Src\Backup.txt">
+    <None Include="APP\Improvements.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\Keypad\Exercises\EX.sim1">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\Keypad\Exercises\Exercises.txt">
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\LCD\Exercises\Exercises.txt">
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\LED\Exercises\Exercises.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\LM35\Exercises\Exercises.txt">
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\Mini-Projects\Mini-Project1.txt">
@@ -310,6 +349,12 @@
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\SSD\Exercises\Exercises.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\Stepper Motor\Exercises\EX.sim1">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="HAL\Stepper Motor\Exercises\Exercises.txt">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>

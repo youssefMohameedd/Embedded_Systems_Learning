@@ -204,6 +204,53 @@ uint8 Read_Port(DIO_Port Port_ID)
 	return value ;	
 }
 //Below Functions can be improved (Ask ChatGPT)
+void Set_Nibble_Direction(DIO_Port Port_ID , uint8 Significance , uint8 Direction)
+{
+	switch(Port_ID)
+	{
+		case PA:
+		if(Significance == HIGH)
+		{
+			DDRA_REG = (DDRA_REG & 0x0F) | (Direction << 4);
+		}
+		else if(Significance == LOW)
+		{
+			DDRA_REG = (DDRA_REG & 0xF0) | (Direction);
+		}
+		break;
+		case PB:
+		if(Significance == HIGH)
+		{
+			DDRB_REG = (DDRB_REG & 0x0F) | (Direction << 4);
+		}
+		else if(Significance == LOW)
+		{
+			DDRB_REG = (DDRB_REG & 0xF0) | (Direction);
+		}
+		break;
+		case PC:
+		if(Significance == HIGH)
+		{
+			DDRC_REG = (DDRC_REG & 0x0F) | (Direction << 4);
+		}
+		else if( Significance == LOW)
+		{
+			DDRC_REG = (DDRC_REG & 0xF0) | (Direction);
+		}
+		break;
+		case PD:
+		if(Significance == HIGH)
+		{
+			DDRD_REG = (DDRD_REG & 0x0F) | (Direction << 4);
+		}
+		else if(Significance == LOW)
+		{
+			DDRD_REG = (DDRD_REG & 0xF0) | (Direction);
+		}
+		break;
+	}
+}
+			
 uint8 Read_Nibble(DIO_Port Port_ID , uint8 Significance)
 {
 	
@@ -211,7 +258,6 @@ uint8 Read_Nibble(DIO_Port Port_ID , uint8 Significance)
 	if(Significance == HIGH)	value =  (value &0xF0) >> 4 ; 
 	else if (Significance == LOW) value = (value &0x0F) ;
 	
-
 	return value ;
 }
 

@@ -31,17 +31,18 @@ void LCD_Write_Cmd(uint8 cmd) {
 	Write_Nibble(LCD_PORT, HIGH, cmd & 0x0F); // Send lower nibble
 	LCD_Latch();
 
-	 _delay_us(50);
-	 if(cmd == 0x01 || cmd == 0x02 ) _delay_ms(2);
+	_delay_us(50);
+	if(cmd == 0x01 || cmd == 0x02 ) _delay_ms(2);
 }
 
 void LCD_Init(void) {
 	
 	
-	Set_Port_Direction(LCD_PORT, 0xFF);
+	Set_Nibble_Direction(LCD_PORT,HIGH,0xF);
 	Set_Channel_Direction(LCD_E, OUTPUT);
 	Set_Channel_Direction(LCD_RS, OUTPUT);
 	Set_Channel_Direction(LCD_RW, OUTPUT);
+	
 	_delay_ms(50); // Wait for LCD power-up
 	Write_Channel(LCD_RW, LOW); // Always in write mode
 	

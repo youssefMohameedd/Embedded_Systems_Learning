@@ -102,3 +102,26 @@ Ex3 : Display the binary code of the active pushbuttons
 			
 	}
 	
+
+	Keypad + LCD:
+
+		LCD_Init();
+	_delay_ms(10);
+	Keypad_Init();
+	
+	uint8 val = 'N';
+
+	while(1)
+	{
+		val = Keypad_Read_Char();
+		if(val!='N')
+		{	
+			LCD_Write_Char(val);
+			if(val=='*') LCD_Write_Cmd(DISPLAY_CLEAR);
+			_delay_ms(100);
+		}
+		
+		
+		
+	}
+	

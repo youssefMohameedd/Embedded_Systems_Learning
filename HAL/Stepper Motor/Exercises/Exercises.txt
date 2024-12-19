@@ -1,0 +1,18 @@
+
+/*
+ * Ex.txt
+ *
+ * Created: 12/17/2024 4:26:07 PM
+ *  Author: maste
+ */ 
+
+
+ 1-Cycle :
+
+ Stepper_Init();
+	while(1)
+	{
+	for(uint8 counter = 0 ; counter < 8 ; counter++) Stepper_Full_wave();
+		_delay_ms(2000);
+	}
+	

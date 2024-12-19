@@ -12,7 +12,7 @@
 //This is HAL driver for LED , PushButton and Buzzer  
 
 #include <STD_Types.h>
-#include <DIO_CFG.h>
+#include <DIO.h>
 #include <LED_CFG.h>
 
 

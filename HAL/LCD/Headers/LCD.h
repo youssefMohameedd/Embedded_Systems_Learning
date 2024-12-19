@@ -10,7 +10,7 @@
 #define LCD_H_
 
 #include <STD_Types.h>
-
+#include <LCD_CFG.h>
 
 
 void LCD_Latch(void);

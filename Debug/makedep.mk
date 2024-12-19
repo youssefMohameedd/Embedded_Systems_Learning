@@ -12,5 +12,9 @@ HAL\LED\Src\LED.c
 
 HAL\SSD\Src\SSD.c
 
+HAL\Stepper Motor\Src\Stepper.c
+
+MCAL\ADC\Src\ADC.c
+
 MCAL\DIO\Src\DIO.c
 

@@ -1,0 +1,28 @@
+
+/*
+ * Exercises.txt
+ *
+ * Created: 12/19/2024 5:08:44 PM
+ *  Author: Youssef
+ */ 
+
+Exercise : Write a program to display the pressed character of the keypad on an
+LCD 
+	Keypad_Init();
+	LCD_Init();
+	_delay_ms(10);
+	uint8 character;
+
+	while(1)
+	{
+		character = Keypad_Read_Char();
+		if(character != 'N')
+		{
+			LCD_Write_Char(character);
+			_delay_ms(50);
+			if(character == '*') LCD_Write_Cmd(DISPLAY_CLEAR);
+		}
+		else _delay_ms(25);
+	}
+	
+	return 0;  
