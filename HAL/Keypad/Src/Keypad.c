@@ -1,24 +1,20 @@
 /*
- * Keypad.c
+ * Test.c
  *
- * Created: 12/6/2024 4:07:10 PM
- *  Author: Youssef
- */ 
+ * Created: 12/20/2024 5:40:32 PM
+ *  Author: maste
 
-#ifndef F_CPU
-#define F_CPU 16000000UL
-#endif
+*/
+#include <Keypad.h>
 
-#include <DIO.h>
-#include <util/delay.h>
-#include <Bit_Math.h>
-#include <DIO_CFG.h>
 
-// Important Note: 
-// When you connect keypad to the board, make sure it doesn't interfere with any
-//LED or PushButton pins as they disturb its operation.
-//I have wasted 50 EGP for thinking that the keypad isn't functioning 
-//and I hope you don't :)
+#define INPUT 0
+#define PULL_UP 1
+
+/*Important Note: When you connect keypad to the board, make sure it 
+doesn't interfere with anyLED or PushButton pins as they disturb its
+operation.I have wasted 50 EGP for thinking that the keypad
+isn't functioning , and I hope you don't :)*/
 
 #define r1 PB7
 #define r2 PB6
@@ -30,14 +26,6 @@
 #define c3 PC4
 #define c4 PC3
 
-//for some reason I should redefine the INPUT and PULL UP macros ,even though they are defined in DIO_CFG.h as enums
-
-#define INPUT 0
-#define PULL_UP 1
-
-#define KEYPAD_INIT_MODE PULL_UP
-
-
 uint8 rows[4] = {r1,r2,r3,r4};
 uint8 cols[4] = {c1,c2,c3,c4};
 
@@ -46,7 +34,7 @@ uint8 KeyPad[4][4]={{'1','2','3','A'},
 {'7','8','9','C'},
 {'*','0','#','D'}};
 
-
+#define KEYPAD_INIT_MODE PULL_UP
 
 void Keypad_Init(void)
 {
@@ -77,6 +65,7 @@ void Keypad_Init(void)
 	#endif
 	_delay_ms(5);
 }
+
 
 // we needn't use the debounced Push-Button function, as halting CPU performance wouldn't
 //affect the Data Display of the LCD

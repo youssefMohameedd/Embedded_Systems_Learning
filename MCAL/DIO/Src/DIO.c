@@ -1,9 +1,6 @@
 
-#include <STD_Types.h>
-#include <DIO_CFG.h>
-#include <DIO_HW.h>
-#include <Bit_Math.h>
 
+#include <DIO.h>
 
 void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 {

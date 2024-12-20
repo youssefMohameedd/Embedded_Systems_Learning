@@ -8,11 +8,7 @@
 
 #define F_CPU 16000000UL
 
-#include <DIO.h>
-#include <SSD_CFG.h>
-#include <Bit_Math.h>
-#include <util/delay.h>
-#include <DIO_HW.h>
+#include <SSD.h>
 
 
 void SSD_init(void)
@@ -21,8 +17,8 @@ void SSD_init(void)
 	Set_Channel_Direction(EN2 , OUTPUT);
 	Write_Channel(EN1,LOW);
 	Write_Channel(EN2,LOW);
-	Set_Nibble_Direction(SSD_PORT,HIGH,0xF);  
-	Write_Nibble(SSD_PORT,HIGH,0x0);
+	Set_Nibble_Direction(SSD_PORT,SSD_SIG,0xF);  
+	Write_Nibble(SSD_PORT,SSD_SIG,0x0);
 	
 }
 void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
@@ -30,9 +26,9 @@ void SSD_Write_One_Digit(SSD_Num SSD_Number , uint8 value)
 
 	if(  value >= 0 && value < 10  )
 	{
-		Write_Nibble(SSD_PORT,HIGH,value);
+		Write_Nibble(SSD_PORT,SSD_SIG,value);
 	}
-	else	Write_Nibble(SSD_PORT,HIGH,0x0);
+	else	Write_Nibble(SSD_PORT,SSD_SIG,0x0);
 	
 	switch(SSD_Number)
 	{

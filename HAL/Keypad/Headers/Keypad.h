@@ -2,17 +2,18 @@
  * Keypad.h
  *
  * Created: 12/5/2024 3:45:07 PM
- *  Author: maste
+ *  Author: Youssef
  */ 
 
 
 #ifndef KEYPAD_H_
 #define KEYPAD_H_
 
-#include <STD_Types.h>
+#include <util/delay.h>
+#include <DIO.h>
 
 
-void Keypad_Init(void); // sets PORTD as an output and Pull_up 
+void Keypad_Init(void);
 uint8 Keypad_Read_Char(void);
 
 

@@ -2,14 +2,10 @@
  * LED.c
  *
  * Created: 11/11/2024 11:10:34 PM
- *  Author: master
+ *  Author:Youssef
  */ 
 
-#include <STD_Types.h>
-#include <DIO.h>
-#include <LED_CFG.h>
-#include <util/delay.h>
-
+#include <LED.h>
 
 void LED_Init(DIO_Channel LED)
 {

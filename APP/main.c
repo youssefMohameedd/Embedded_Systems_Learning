@@ -10,9 +10,6 @@
 #endif
 
 #include <util/delay.h>
-
-#include <STD_Types.h>
-#include <Bit_Math.h>
 #include <SSD.h>
 #include <LED.h>
 #include <LCD.h>
@@ -22,13 +19,7 @@
 
 int main(void)
 {
-	Stepper_Init();
-	
-	while(1)
-	{
-	for(uint8 counter = 0 ; counter < 8 ; counter++) Stepper_Full_wave();
-		_delay_ms(2000);
-	}
+
 	return 0;   
 }
 

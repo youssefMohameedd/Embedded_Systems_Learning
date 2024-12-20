@@ -8,7 +8,7 @@
 
 <item itemtype="Ground" CircId="Ground-27" mainComp="false" Show_id="false" Show_Val="false" Pos="264,-56" rotation="0" hflip="1" vflip="1" label="Ground-27" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
-<item itemtype="Potentiometer" CircId="Potentiometer-54" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="296,-228" rotation="0" hflip="1" vflip="1" label="Potentiometer-54" idLabPos="-16,-40" labelrot="0" valLabPos="15,-20" valLabRot="0" Resistance="1 kΩ" Value_Ohm="377 Ω" Slider="false" Scale="1" />
+<item itemtype="Potentiometer" CircId="Potentiometer-54" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="296,-228" rotation="0" hflip="1" vflip="1" label="Potentiometer-54" idLabPos="-16,-40" labelrot="0" valLabPos="15,-20" valLabRot="0" Resistance="1 kΩ" Value_Ohm="50 Ω" Slider="false" Scale="1" />
 
 <item itemtype="Ground" CircId="Ground-70" mainComp="false" Show_id="false" Show_Val="false" Pos="220,-68" rotation="0" hflip="1" vflip="1" label="Ground-70" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
 
@@ -25,8 +25,6 @@
 <item itemtype="Connector" uid="Connector-35" startpinid="mega32-23-PORTA6" endpinid="Hd44780-22-dataPin6" pointList="148,-132,244,-132,244,-260" />
 
 <item itemtype="Connector" uid="Connector-36" startpinid="mega32-23-PORTA5" endpinid="Hd44780-22-dataPin5" pointList="148,-140,236,-140,236,-260" />
-
-<item itemtype="Connector" uid="Connector-37" startpinid="mega32-23-PORTB2" endpinid="Hd44780-22-PinRW" pointList="84,-164,40,-164,40,-208,180,-208,180,-260" />
 
 <item itemtype="Connector" uid="Connector-39" startpinid="mega32-23-PORTB3" endpinid="Hd44780-22-PinEn" pointList="84,-156,52,-156,52,-200,188,-200,188,-260" />
 
@@ -46,8 +44,10 @@
 
 <item itemtype="Connector" uid="Connector-185" startpinid="Node-84-2" endpinid="Node-55-0" pointList="60,-116,72,-116" />
 
-<item itemtype="Connector" uid="Connector-205" startpinid="Potentiometer-54-PinM" endpinid="mega32-23-PORTA1" pointList="296,-212,296,-172,148,-172" />
-
 <item itemtype="Connector" uid="Connector-206" startpinid="Potentiometer-54-PinB" endpinid="Ground-27-Gnd" pointList="312,-228,312,-112,264,-112,264,-72" />
+
+<item itemtype="Connector" uid="Connector-209" startpinid="Potentiometer-54-PinM" endpinid="mega32-23-PORTA0" pointList="296,-212,296,-180,148,-180" />
+
+<item itemtype="Connector" uid="Connector-37" startpinid="mega32-23-PORTB2" endpinid="Hd44780-22-PinRW" pointList="84,-164,40,-164,40,-208,180,-208,180,-260" />
 
 </circuit>

@@ -5,12 +5,7 @@
  *  Author: Youssef
  */ 
 
-#include <LCD_CFG.h>
-#include <STD_Types.h>
-#include <DIO.h>
-#include <util/delay.h>
-#include <Bit_Math.h>
-
+#include <LCD.h>
 static uint8 AC = 0; // Address Counter initialization 
 
 void LCD_Latch(void) {
@@ -25,20 +20,20 @@ void LCD_Write_Cmd(uint8 cmd) {
 	Write_Channel(LCD_RS, LOW);
 	_delay_us(2);
 	
-	Write_Nibble(LCD_PORT, HIGH, cmd >> 4); // Send higher nibble
+	Write_Nibble(LCD_PORT, LCD_SIG, cmd >> 4); // Send higher nibble
 	LCD_Latch();
 
-	Write_Nibble(LCD_PORT, HIGH, cmd & 0x0F); // Send lower nibble
+	Write_Nibble(LCD_PORT, LCD_SIG, cmd & 0x0F); // Send lower nibble
 	LCD_Latch();
 
 	_delay_us(50);
 	if(cmd == 0x01 || cmd == 0x02 ) _delay_ms(2);
 }
 
-void LCD_Init(void) {
+void LCD_Init(void) 
+{
 	
-	
-	Set_Nibble_Direction(LCD_PORT,HIGH,0xF);
+	Set_Nibble_Direction(LCD_PORT,LCD_SIG,0xF);
 	Set_Channel_Direction(LCD_E, OUTPUT);
 	Set_Channel_Direction(LCD_RS, OUTPUT);
 	Set_Channel_Direction(LCD_RW, OUTPUT);
@@ -51,7 +46,6 @@ void LCD_Init(void) {
 	LCD_Write_Cmd(DISPLAY_CONTROL);
 	LCD_Write_Cmd(DISPLAY_CLEAR); // Returns Home by Default
 	LCD_Write_Cmd(ENTRY_MODE_SET);
-	
 	
 }
 
@@ -80,15 +74,14 @@ void LCD_Write_Char(uint8 character)
 	Write_Channel(LCD_RS, HIGH);
 	_delay_us(2);
 
-	Write_Nibble(LCD_PORT, HIGH, character >> 4);   // Send higher nibble
+	Write_Nibble(LCD_PORT,LCD_SIG, character >> 4);   // Send higher nibble
 	LCD_Latch();
 
-	Write_Nibble(LCD_PORT, HIGH, character & 0x0F); // Send lower nibble
+	Write_Nibble(LCD_PORT,LCD_SIG, character & 0x0F); // Send lower nibble
 	LCD_Latch();
 
 	_delay_us(50);
 	AC++;
- 
 	
 }
 

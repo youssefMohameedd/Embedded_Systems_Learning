@@ -10,6 +10,7 @@
 #define LCD_CFG_H_
 
 #define LCD_PORT PA
+#define LCD_SIG HIGH  // SIG == significance
 #define LCD_RS   PB1
 #define LCD_RW   PB2
 #define LCD_E    PB3

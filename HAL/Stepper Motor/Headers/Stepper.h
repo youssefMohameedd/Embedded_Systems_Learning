@@ -9,13 +9,11 @@
 #ifndef STEPPER_H_
 #define STEPPER_H_
 
-#include <STD_Types.h>
-
-
+#include <util/delay.h>
+#include <DIO.h>
 
 void Stepper_Init(void);
-void Stepper_Full_wave(void);
-void Stepper_Hold(void);
+void Stepper_Rotate(sint16 angle); // specify polarity using a sign to the angle
 
 
 #endif /* STEPPER_H_ */

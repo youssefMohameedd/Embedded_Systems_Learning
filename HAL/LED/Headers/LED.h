@@ -9,12 +9,11 @@
 #ifndef LED_H_
 #define LED_H_
 
-//This is HAL driver for LED , PushButton and Buzzer  
-
-#include <STD_Types.h>
+#include <util/delay.h>
 #include <DIO.h>
 #include <LED_CFG.h>
 
+//This is HAL driver for LED , PushButton and Buzzer  
 
 void LED_Init(DIO_Channel LED);
 void PushB_Init(DIO_Channel PushB);

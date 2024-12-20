@@ -8,25 +8,28 @@
 
  Implement a program to display LM35 readings on a LCD (if  variations > 0.5 Degrees only)
 
- LCD_Init();
+	
+	LCD_Init();
 	_delay_ms(10);
 	uint32 Value = 10 ;
-	uint8 prev_Value = Value ;
+	uint32 prev_Value = Value ;
 	ADC_Init();
-	
+	LCD_Move_Pos(0,3);
+	LCD_Write_Str("Temp:");
 	while(1)
 	{
 
-		Value = ADC_Read(ADC_Channel_1);
+		Value = ADC_Read(ADC_Channel_0);
 		if(prev_Value != Value )
 		{
 			LCD_Write_Cmd(DISPLAY_CLEAR);
-			_delay_ms(5);
+			LCD_Move_Pos(0,3);
+			LCD_Write_Str("Temp:");
 			LCD_Write_Number(Value);
-			_delay_ms(100);
+			_delay_ms(500);
 			prev_Value = Value;
 		}
-		else _delay_ms(100);
+		else _delay_ms(250);
 
 	}
 

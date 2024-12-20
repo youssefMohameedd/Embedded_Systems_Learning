@@ -7,12 +7,11 @@
  */ 
 
 
- 1-Cycle :
-
- Stepper_Init();
+ 
+	Stepper_Init();
+	
 	while(1)
 	{
-	for(uint8 counter = 0 ; counter < 8 ; counter++) Stepper_Full_wave();
+		Stepper_Rotate(360);
 		_delay_ms(2000);
 	}
-	

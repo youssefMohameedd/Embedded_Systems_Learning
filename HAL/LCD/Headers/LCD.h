@@ -9,8 +9,11 @@
 #ifndef LCD_H_
 #define LCD_H_
 
-#include <STD_Types.h>
+#include <util/delay.h>
+#include <DIO.h>
 #include <LCD_CFG.h>
+
+
 
 
 void LCD_Latch(void);

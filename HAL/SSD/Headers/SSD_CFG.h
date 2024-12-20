@@ -10,6 +10,7 @@
 #define SSD_CFG_H_
 
 #define SSD_PORT PA
+#define SSD_SIG HIGH // SIG = significance
 
 #define EN1 PB1
 #define EN2 PB2
