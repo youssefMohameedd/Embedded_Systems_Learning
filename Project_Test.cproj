@@ -221,6 +221,9 @@
     <Compile Include="HAL\Keypad\Headers\Keypad.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\Keypad\Headers\Keypad_CFG.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\Keypad\Src\Keypad.c">
       <SubType>compile</SubType>
     </Compile>
@@ -252,6 +255,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\Stepper Motor\Headers\Stepper.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\Stepper Motor\Headers\Stepper_CFG.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\Stepper Motor\Src\Stepper.c">
@@ -299,11 +305,10 @@
     <Folder Include="HAL\LED\Headers" />
     <Folder Include="HAL\LED\Exercises" />
     <Folder Include="HAL\LED\Src" />
-    <Folder Include="HAL\LM35\Exercises" />
-    <Folder Include="HAL\Mini-Projects" />
+    <Folder Include="HAL\LM35\" />
+    <Folder Include="HAL\LM35\Exercises\" />
     <Folder Include="HAL\LCD" />
     <Folder Include="HAL\Keypad" />
-    <Folder Include="HAL\LM35" />
     <Folder Include="HAL\Stepper Motor" />
     <Folder Include="HAL\SSD" />
     <Folder Include="HAL\SSD\Headers" />
@@ -322,6 +327,7 @@
     <Folder Include="MCAL\DIO\Header\" />
     <Folder Include="MCAL\DIO\Src" />
     <Folder Include="MCAL\ADC" />
+    <Folder Include="Projects" />
   </ItemGroup>
   <ItemGroup>
     <None Include="APP\Improvements.txt">
@@ -340,9 +346,6 @@
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\LM35\Exercises\Exercises.txt">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="HAL\Mini-Projects\Mini-Project1.txt">
       <SubType>compile</SubType>
     </None>
     <None Include="HAL\SSD\Exercises\EX.sim1">

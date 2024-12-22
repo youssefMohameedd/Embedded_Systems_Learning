@@ -6,6 +6,4 @@
  *  Author: Youssef
  */ 
 
-
-Edits:
-Functions Documentations (parameters and brief description)
+ Use interrupt in keypad - LM35

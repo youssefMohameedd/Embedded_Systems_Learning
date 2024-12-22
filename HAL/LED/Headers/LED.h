@@ -15,13 +15,49 @@
 
 //This is HAL driver for LED , PushButton and Buzzer  
 
+/** 
+* @brief the function is to initialized the LED 
+* @param  LED  LED pin number(LED0,LED1,LED2)
+*/
 void LED_Init(DIO_Channel LED);
+/**
+ * @brief this function intializes the PushButton
+ * @param PushB Pushbutton pin number (PushB0,PushB1,PushB2)
+ */
 void PushB_Init(DIO_Channel PushB);
+/**
+ * @brief this function intializes the Buzzer
+ * @param Buzzer Buzzer pin number (Buzzer0,Buzzer1,Buzzer2)
+ */
 void Buzzer_Init();
+/**
+ * @brief Write specific value to LED
+ * @param LED LED pin number(LED0,LED1,LED2)
+ * @param Level the STD_Level to write to the LED (STD_HIGH,STD_LOW)
+ */
 void Write_LED (DIO_Channel LED , STD_Level Level);
+/**
+ * @brief Write specific value to PushButton
+ * @param PushB Pushbutton pin number (PushB0,PushB1,PushB2)
+ */
+/**
+ * @brief Write a specific value to the Buzzer
+ * @param Buzzer Buzzer pin number (Buzzer0, Buzzer1, Buzzer2)
+ * @param Level the STD_Level to write to the Buzzer (STD_HIGH, STD_LOW)
+ */
 void Write_Buzzer(DIO_Channel Buzzer, STD_Level Level);
-STD_Level Debounced_Read_PushB (DIO_Channel PushB);
-void Toggle_LED(DIO_Channel LED);
 
+/**
+ * @brief Read the debounced state of a PushButton
+ * @param PushB Pushbutton pin number (PushB0, PushB1, PushB2)
+ * @return The debounced state of the PushButton (STD_HIGH, STD_LOW)
+ */
+STD_Level Debounced_Read_PushB (DIO_Channel PushB);
+
+/**
+ * @brief Toggle the state of an LED
+ * @param LED LED pin number (LED0, LED1, LED2)
+ */
+void Toggle_LED(DIO_Channel LED);
 
 #endif /* LED_H_ */

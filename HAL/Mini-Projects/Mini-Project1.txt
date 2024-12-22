@@ -1,8 +1,0 @@
-
-/*
- * Mini_Project1.txt
- *
- * Created: 11/18/2024 4:54:57 PM
- *  Author: Youssef
- */ 
-	

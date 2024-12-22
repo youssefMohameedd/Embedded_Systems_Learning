@@ -11,7 +11,7 @@
 
 #define SSD_PORT PA
 #define SSD_SIG HIGH // SIG = significance
-
+// Pin definitions
 #define EN1 PB1
 #define EN2 PB2
 

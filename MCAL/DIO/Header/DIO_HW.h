@@ -4,6 +4,8 @@
 
 #define REG_STEP 3
 
+//Register Summary for DIO Module
+
 #define PORTA_REG   *((volatile uint8 *)0x3B)
 #define DDRA_REG    *((volatile uint8 *)0x3A)
 #define PINA_REG    *((volatile uint8 *)0x39)

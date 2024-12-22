@@ -10,7 +10,7 @@
 void LED_Init(DIO_Channel LED)
 {
 	Set_Channel_Direction(LED,OUTPUT);
-	//Write_Channel(LED,LOW);
+	Write_Channel(LED,LOW);
 }
 void PushB_Init(DIO_Channel PushB)
 {
@@ -35,7 +35,7 @@ void Write_Buzzer(DIO_Channel Buzzer ,STD_Level Level)
 
 STD_Level Debounced_Read_PushB (DIO_Channel PushB)
 {
-	
+	//Debouncing structure
 	if(Read_Channel(PushB)== HIGH)
 	{
 		_delay_ms(50);

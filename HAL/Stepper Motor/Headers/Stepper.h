@@ -2,7 +2,7 @@
  * Stepper.h
  *
  * Created: 12/16/2024 2:24:10 PM
- *  Author: maste
+ *  Author: Youssef
  */ 
 
 
@@ -11,9 +11,18 @@
 
 #include <util/delay.h>
 #include <DIO.h>
+#include <Stepper_CFG.h>
 
+/**
+ * @brief Initializes the stepper motor hardware.
+ */
 void Stepper_Init(void);
-void Stepper_Rotate(sint16 angle); // specify polarity using a sign to the angle
+
+/**
+ * @brief Rotates the stepper motor by the specified angle.
+ * @param angle The angle to rotate the stepper motor by, in degrees,the angle sign determines the direction of rotation.
+ */
+void Stepper_Rotate(sint16 angle);
 
 
 #endif /* STEPPER_H_ */

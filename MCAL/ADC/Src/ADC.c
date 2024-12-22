@@ -33,8 +33,6 @@ void ADC_Init (void)
 	SET_BIT(ADCSRA_REG,4);
 	SET_BIT(ADCSRA_REG,ADEN_BIT); 
 	
-		
-	
 }
 
 uint16 ADC_Read (ADC_Channels Channel)
@@ -52,7 +50,7 @@ uint16 ADC_Read (ADC_Channels Channel)
 
 	//Result Transformation into appropriate values
 	val = (val/1024.0)*5.0; // voltage value
-	val =  val * 100.0 ;// Degree Celsius (Change it depending on the sensitivity of the existing sensor,i.e: 10mV/C)
+	val = (uint16) val * 100.0 ;// Degree Celsius (Change it depending on the sensitivity of the existing sensor,i.e: 10mV/C)
 	
 	return val;
 	

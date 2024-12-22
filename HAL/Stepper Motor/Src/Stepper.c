@@ -2,26 +2,11 @@
  * Stepper.c
  *
  * Created: 12/16/2024 2:24:21 PM
- *  Author: maste
+ *  Author: Youssef
  */ 
-
-
-
 
 #include <Stepper.h>
 
-
-#define SPEED 20
-#define SPEED_DELAY 100.0/SPEED
-
-
-#define STEPPER_PORT PD
-#define STEPPER_SIG HIGH
-
-#define IN1 PD4
-#define IN2 PD5
-#define IN3 PD6
-#define IN4 PD7
 
 uint8 coils[4] = {IN1,IN2,IN3,IN4};
 

@@ -17,7 +17,7 @@
 #define LED1 PC7
 #define LED2 PD3
 
-// All Push buttons are connected in a pull down resistor connection
+// All Push buttons and Buzzer in AMIT Board are connected in a pull down resistor connection
 
 #define PushB0 PB0
 #define PushB1 PD6

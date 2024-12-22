@@ -21,8 +21,18 @@ Notice : We need to use Bit Masking to configure our ADC Registers
 to ensure that previous values of the register wouldn't affect
 our current assignation (we have made something similar in DIO  Write_Nibble )
 */
+/**
+ * @brief Initializes the ADC module.
+ */
 void ADC_Init (void);
+
+/**
+ * @brief Reads the value of the specified ADC channel.
+ * @param Channel The ADC channel to read.
+ * @return The 10-bit value read from the specified ADC channel.
+ */
 uint16 ADC_Read (ADC_Channels Channel);
+
 
 
 #endif /* ADC_H_ */
