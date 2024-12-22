@@ -12,3 +12,6 @@ Recommended Sequence of Learning is as follows:
 -ADC ->LM35
 
 
+Future Improvements shall include :
+implementing a CMake file to enable direct coding in VS Code
+Implementing RTOS
