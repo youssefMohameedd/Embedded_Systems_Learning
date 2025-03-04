@@ -43,11 +43,10 @@ SUBDIRS :=  \
 ../HAL/LED/Headers \
 ../HAL/LED/Exercises \
 ../HAL/LED/Src \
-../HAL/LM35/Exercises \
-../HAL/Mini-Projects \
+../HAL/LM35/ \
+../HAL/LM35/Exercises/ \
 ../HAL/LCD \
 ../HAL/Keypad \
-../HAL/LM35 \
 ../HAL/Stepper\ Motor \
 ../HAL/SSD \
 ../HAL/SSD/Headers \
@@ -65,7 +64,8 @@ SUBDIRS :=  \
 ../MCAL/DIO \
 ../MCAL/DIO/Header/ \
 ../MCAL/DIO/Src \
-../MCAL/ADC
+../MCAL/ADC \
+../Projects
 
 
 # Add inputs and outputs from these tool invocations to the build variables 

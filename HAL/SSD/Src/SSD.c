@@ -53,6 +53,5 @@ void SSD_Write_Two_Digits(uint8 value)
 	
 	SSD_Write_One_Digit(SSD_1,First_Digit);
 	SSD_Write_One_Digit(SSD_2,Second_Digit);
-
 	
 }

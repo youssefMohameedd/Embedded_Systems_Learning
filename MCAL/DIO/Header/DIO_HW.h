@@ -1,9 +1,6 @@
 #ifndef DIO_HW_H_ // inclusion guards
 #define DIO_HW_H_
 
-
-#define REG_STEP 3
-
 //Register Summary for DIO Module
 
 #define PORTA_REG   *((volatile uint8 *)0x3B)
@@ -21,8 +18,6 @@
 #define PORTD_REG   *((volatile uint8 *)0x32)
 #define DDRD_REG    *((volatile uint8 *)0x31)
 #define PIND_REG    *((volatile uint8 *)0x30)
-
-
 
 
 #endif /* DIO_HW_H_  inclusion guards */ 

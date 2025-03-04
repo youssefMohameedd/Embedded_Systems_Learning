@@ -23,6 +23,6 @@
 #define PushB1 PD6
 #define PushB2 PD2
 
-#define Buzzer PA3
+#define BUZZER PA3
 
 #endif /* LED_CFG_H_ */

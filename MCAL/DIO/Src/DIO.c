@@ -17,11 +17,11 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 		}
 		else if(Direction == PULL_UP)
 		{
-		CLR_BIT(DDRA_REG,pin);
-		SET_BIT(PORTA_REG,pin);
+			CLR_BIT(DDRA_REG,pin);
+			SET_BIT(PORTA_REG,pin);
 		}
 		else if(Direction == OUTPUT)	
-		SET_BIT(DDRA_REG,pin);
+			SET_BIT(DDRA_REG,pin);
 		break;
 		case PB:
 		if(Direction == INPUT)		
@@ -35,7 +35,7 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 			SET_BIT(PORTB_REG,pin);
 		}	
 		else if(Direction == OUTPUT)
-		SET_BIT(DDRB_REG,pin);
+			SET_BIT(DDRB_REG,pin);
 		break;
 		case PC:
 		if(Direction == INPUT)	
@@ -49,7 +49,7 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 			SET_BIT(PORTC_REG,pin);
 		}
 		else if(Direction == OUTPUT)
-		SET_BIT(DDRC_REG,pin);
+			SET_BIT(DDRC_REG,pin);
 		break;
 		case PD:
 		if(Direction == INPUT)	
@@ -63,7 +63,7 @@ void Set_Channel_Direction (DIO_Channel Ch_ID , DIO_Direction Direction)
 			SET_BIT(PORTD_REG,pin);
 		}
 		else if(Direction == OUTPUT)
-		SET_BIT(DDRD_REG,pin);
+			SET_BIT(DDRD_REG,pin);
 		break;
 	}
 	
@@ -95,6 +95,7 @@ void Write_Channel(DIO_Channel Ch_ID ,STD_Level Level)
 	}
 
 }
+
 void Toggle_Channel(DIO_Channel Ch_ID)
 {
 	uint8 port = Ch_ID/8 ;
@@ -252,7 +253,7 @@ uint8 Read_Nibble(DIO_Port Port_ID , uint8 Significance)
 {
 	
 	uint8 value = Read_Port(Port_ID);
-	if(Significance == HIGH)	value =  (value &0xF0) >> 4 ; 
+	if(Significance == HIGH)	value =  (value & 0xF0) >> 4 ; 
 	else if (Significance == LOW) value = (value &0x0F) ;
 	
 	return value ;

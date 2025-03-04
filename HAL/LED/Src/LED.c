@@ -18,8 +18,8 @@ void PushB_Init(DIO_Channel PushB)
 }
 void Buzzer_Init()
 {
-	Set_Channel_Direction(Buzzer,OUTPUT);
-	Write_Channel(Buzzer,LOW);
+	Set_Channel_Direction(BUZZER,OUTPUT);
+	Write_Channel(BUZZER,LOW);
 }
 
 void Write_LED (DIO_Channel LED , STD_Level Level)
@@ -33,19 +33,19 @@ void Write_Buzzer(DIO_Channel Buzzer ,STD_Level Level)
 }
 
 
-STD_Level Debounced_Read_PushB (DIO_Channel PushB)
+STD_Level Read_PushB (DIO_Channel PushB)
 {
-	//Debouncing structure
+	//Debouncing Logic
 	if(Read_Channel(PushB)== HIGH)
 	{
-		_delay_ms(50);
+		_delay_ms(25);
 		if(Read_Channel(PushB) == HIGH)
 		{
 			return HIGH;
 		}
 	}
 	return LOW;
-
+	
 }
 
 void Toggle_LED(DIO_Channel LED)

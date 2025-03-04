@@ -2,6 +2,7 @@
 #define DIO_CFG
 
 typedef enum {PA = 0 , PB , PC , PD }DIO_Port;
+	
 //Token to include information about the port and the pin .
 typedef enum 
 {
