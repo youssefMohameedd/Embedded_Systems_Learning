@@ -12,6 +12,6 @@
 	
 	while(1)
 	{
-		Stepper_Rotate(360);
+		Stepper_Rotate(360,1);
 		_delay_ms(2000);
 	}

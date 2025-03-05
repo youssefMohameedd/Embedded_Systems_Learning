@@ -14,7 +14,7 @@
 
 <item itemtype="Rail" CircId="Rail-32" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="-220,96" rotation="90" hflip="1" vflip="1" label="Rail-32" idLabPos="-5,-10" labelrot="-90" valLabPos="-7.28596,30.5626" valLabRot="-90" Voltage="5 V" />
 
-<item itemtype="Voltage Source" CircId="Voltage Source-9" mainComp="false" ShowProp="MaxValue" Show_id="true" Show_Val="true" Pos="-436,56" rotation="0" hflip="1" vflip="1" label="VS" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Running="true" Value_Volt="3.15 V" MaxValue="9 V" MinValue="0 V" />
+<item itemtype="Voltage Source" CircId="Voltage Source-9" mainComp="false" ShowProp="MaxValue" Show_id="true" Show_Val="true" Pos="-436,56" rotation="0" hflip="1" vflip="1" label="VS" idLabPos="-32,-48" labelrot="0" valLabPos="-8,30" valLabRot="0" Running="true" Value_Volt="5.85 V" MaxValue="9 V" MinValue="0 V" />
 
 <item itemtype="Stepper" CircId="Stepper-3" mainComp="false" ShowProp="Resistance" Show_id="true" Show_Val="true" Pos="-448,-84" rotation="0" hflip="-1" vflip="1" label="Stepper-3" idLabPos="-32,-62" labelrot="0" valLabPos="-14,36" valLabRot="0" Bipolar="false" Steps="32" Resistance="50 Ω" />
 

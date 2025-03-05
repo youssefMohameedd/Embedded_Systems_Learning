@@ -20,25 +20,14 @@
 
 int main(void)
 {
-		Keypad_Init();
-		LCD_Init();
-		uint8 val = 'N';
-
-		while(1)
-		{
-			val = Keypad_Read_Char();
-			if(val!='N')
-			{
-				LCD_Write_Char(val);
-				if(val=='*') LCD_Write_Cmd(DISPLAY_CLEAR);
-				_delay_ms(100);
-			}
-			
-			
-			
-		}
-
 	
+	Stepper_Init();
+	
+	while(1)
+	{
+		Stepper_Rotate(360,2);
+		_delay_ms(2000);
+	}
 	
 	return 0;   
 }

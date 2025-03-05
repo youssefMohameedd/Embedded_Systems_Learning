@@ -20,9 +20,11 @@ void Stepper_Init(void);
 
 /**
  * @brief Rotates the stepper motor by the specified angle.
- * @param angle The angle to rotate the stepper motor by, in degrees,the angle sign determines the direction of rotation.
+ * @param angle The angle to rotate the stepper motor by, in degrees. The sign indicates rotation polarity.
+ * @param speed The speed(frequency) to rotate the stepper motor by, in Hz. values range from 0 to 100.
+
  */
-void Stepper_Rotate(sint16 angle);
+void Stepper_Rotate(sint16 angle,uint16 speed);
 
 
 #endif /* STEPPER_H_ */
