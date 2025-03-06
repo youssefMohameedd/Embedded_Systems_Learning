@@ -20,7 +20,7 @@
 #define STEPPER_PORT PD
 #define STEPPER_SIG HIGH
 
-#define STEPPING 2// 0 : Half-Stepping(Variable Torque) , 1 : Full-Stepping(Const. Torque) , Wave-Mode (Const. Torque)
+#define STEPPING 0// 0 : Half-Stepping(Variable Torque) , 1 : Full-Stepping(Const. Torque) , Wave-Mode (Const. Torque)
 #define GR 64 // Gear Ratio of the output shaft speed to the motor shaft speed (64:1)
 
 

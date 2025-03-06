@@ -25,8 +25,8 @@ int main(void)
 	
 	while(1)
 	{
-		Stepper_Rotate(360,2);
-		_delay_ms(2000);
+		Stepper_Rotate(360,10);
+		_delay_ms(50);
 	}
 	
 	return 0;   

@@ -3,7 +3,7 @@
  * Ex.txt
  *
  * Created: 12/17/2024 4:26:07 PM
- *  Author: maste
+ *  Author: Youssef
  */ 
 
 
@@ -13,5 +13,5 @@
 	while(1)
 	{
 		Stepper_Rotate(360,1);
-		_delay_ms(2000);
+		_delay_ms(500);
 	}
