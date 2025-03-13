@@ -17,7 +17,7 @@
 #define ADCSRA_REG *((volatile uint8*)0x26)
 #define ADCH_REG   *((volatile uint8*)0x25)
 #define ADCL_REG   *((volatile uint8*) 0x24)
-#define ADCLH_REG  *((volatile uint16*) 0x24)  // used at right adjustment only(which is by default)
+#define ADCLH_REG  *((volatile uint16*) 0x24)  // used at right adjustment only( by default)
 #define SFIOR_REG  *((volatile uint8*)0x50)
 
 //ADC Bits
@@ -47,8 +47,8 @@
 //ADC Voltage Reference
 
 #define AREF_VOLTAGE 0 << REFS0_BIT // as you connect it
-#define AVCC_VOLTAGE 1 << REFS0_BIT //5 V
-#define INT_VOLTAGE  3 << REFS0_BIT //2.56 V
+#define AVCC_VOLTAGE 1 << REFS0_BIT // 5 V
+#define INT_VOLTAGE  3 << REFS0_BIT // 2.56 V
 
 //ADC Prescalar
 

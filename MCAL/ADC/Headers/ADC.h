@@ -27,11 +27,11 @@ our current assignation (we have made something similar in DIO  Write_Nibble )
 void ADC_Init (void);
 
 /**
- * @brief Reads the value of the specified ADC channel.
+ * @brief Starts conversion of the specified ADC channel.
  * @param Channel The ADC channel to read.
  * @return The 10-bit value read from the specified ADC channel.
  */
-uint16 ADC_Read (ADC_Channels Channel);
+void ADC_Start_Conversion(ADC_Channels Channel);
 
 
 

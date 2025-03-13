@@ -10,6 +10,8 @@ HAL\LCD\Src\LCD.c
 
 HAL\LED\Src\LED.c
 
+HAL\Sensors\Src\Sensors.c
+
 HAL\SSD\Src\SSD.c
 
 HAL\Stepper Motor\Src\Stepper.c

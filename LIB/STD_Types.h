@@ -19,7 +19,7 @@ typedef unsigned int uint32;
 typedef signed int sint32 ;
 
 
-
 typedef enum {LOW,HIGH}STD_Level;
+
 
 #endif /* STD_TYPES_H_ */
