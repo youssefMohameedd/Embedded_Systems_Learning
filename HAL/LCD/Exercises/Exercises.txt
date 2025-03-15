@@ -19,7 +19,7 @@ Useful external functions : itoa ( used for integers) - sprintf(used for float n
  display numbers from 0 to 99 with increment of 1 every 1 second
 
  LCD_Init();
-	
+_delay_ms(10);
 	
 	uint8 Initial_Pos = 3;
 	uint8 Label[] = "Temp:";
@@ -48,7 +48,7 @@ Useful external functions : itoa ( used for integers) - sprintf(used for float n
 
  	PushB_Init(PushB0);
 	LCD_Init();
-	
+	_delay_ms(10);
 	
 	uint8 Initial_Pos = 3;
 	uint8 Label[] = "Temp:";
@@ -78,7 +78,7 @@ Ex3 : Display the binary code of the active pushbuttons
 	PushB_Init(PushB1);
 	PushB_Init(PushB2);
 	LCD_Init();
-	
+	_delay_ms(10);
 	
 	uint8 Initial_Pos = 3;
 	uint8 Label[] = "Temp:";
@@ -112,6 +112,7 @@ Ex4 : Display characters written on the keypad
 // Note : Simulation file is inside the keypad directory :)
 	Keypad_Init();
 	LCD_Init();
+	_delay_ms(10);
 
 	uint8 val = 'N';
 

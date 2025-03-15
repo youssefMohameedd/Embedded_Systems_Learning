@@ -10,7 +10,7 @@
 
 void ADC_Init (void)
 {
-	SET_BIT(ADCSRA_REG,ADEN_BIT);
+	
 
 	//Reference Voltage Config - AVCC 
 	ADMUX_REG &= ADC_VOLTAGE_REF_CLEAR_MASK;
@@ -38,7 +38,7 @@ void ADC_Init (void)
 	SET_BIT(ADCSRA_REG,ADIF_BIT);
 	#endif
 	
-	
+	SET_BIT(ADCSRA_REG,ADEN_BIT);
 	
 }
 

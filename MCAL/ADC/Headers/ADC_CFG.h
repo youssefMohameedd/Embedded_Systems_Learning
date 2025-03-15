@@ -34,7 +34,7 @@ typedef enum {
 
 
 //Setting Masks
-#define ADC_VOLTAGE_REF         AREF_VOLTAGE
+#define ADC_VOLTAGE_REF         AVCC_VOLTAGE // use AVCC in AMIT Board
 #define PRESCALAR_FACTOR        ADC_PRESCALER_128
 #define ADC_MODE                ADC_MODE_SINGLE_CONVERSION
 #define ADC_TRIGGERING_MODE     ADC_TRIGGER_SOURCE_FREE_RUNNING

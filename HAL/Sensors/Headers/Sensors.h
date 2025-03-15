@@ -12,7 +12,8 @@
 #include <ADC.h>
 #include <Sensors_CFG.h>
 
-uint16 Sensor_Read(ADC_Channels Channel);
+
+float Sensor_Read(ADC_Channels Index);
 
 
 #endif /* LM35_H_ */
