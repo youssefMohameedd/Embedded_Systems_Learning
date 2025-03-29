@@ -16,7 +16,11 @@ HAL\SSD\Src\SSD.c
 
 HAL\Stepper Motor\Src\Stepper.c
 
+LIB\GIE.c
+
 MCAL\ADC\Src\ADC.c
 
 MCAL\DIO\Src\DIO.c
+
+MCAL\EXTI\Src\EXTI.c
 

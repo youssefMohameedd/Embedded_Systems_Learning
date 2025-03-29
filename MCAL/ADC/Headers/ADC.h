@@ -33,6 +33,6 @@ void ADC_Init (void);
  */
 void ADC_Start_Conversion(ADC_Channels Channel);
 
-
+uint16 ADC_GetResult(void);
 
 #endif /* ADC_H_ */

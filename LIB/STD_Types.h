@@ -21,5 +21,8 @@ typedef signed int sint32 ;
 
 typedef enum {LOW,HIGH}STD_Level;
 
+#define TRUE 1
+#define FALSE 0
+
 
 #endif /* STD_TYPES_H_ */

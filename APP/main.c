@@ -17,28 +17,27 @@
 #include <Stepper.h>
 #include <Sensors.h>
 
-
 int main(void)
 {
 	
-	
 	ADC_Init();
-	SSD_init();
+	LCD_Init();
+	_delay_ms(10);
 	
-	
-	uint16 Value = 20 ;
-	
+	uint16 value ;
+
 	while(1)
 	{
-		Value = Sensor_Read(NTC);
-		for(uint8 counter = 0 ; counter < 5 ; counter++)
-		{
-			SSD_Write_Two_Digits(Value);
-		}
+		value = Sensor_Read(LM35);
+		LCD_Write_Cmd(DISPLAY_CLEAR);
+		LCD_Move_Pos(0,3);
+		LCD_Write_Str("Temp:");
+		LCD_Write_Number(value);
+		
+		_delay_ms(250);
+		
 		
 	}
 	
-	
-	return 0;   
+	return 0;
 }
-

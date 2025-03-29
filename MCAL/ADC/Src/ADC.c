@@ -20,7 +20,8 @@ void ADC_Init (void)
 	ADCSRA_REG &= PRESCALER_CLR_MASK;
 	ADCSRA_REG |= PRESCALAR_FACTOR;
 
-	//Mode Selection 
+	//Mode Selection. Note : We used #if macro because the bit manipulation meant for 1 bit only, otherwise we
+	//use nomral bit masking.
 	#if   (ADC_MODE == ADC_MODE_SINGLE_CONVERSION)
 	CLR_BIT(ADCSRA_REG,ADATE_BIT);
 	#elif (ADC_MODE == ADC_MODE_AUTO_TRIGGERED)
@@ -29,29 +30,45 @@ void ADC_Init (void)
 	SFIOR_REG |= ADC_TRIGGERING_MODE;
 	#endif
 
-	//ADC Interrupt Selection 
-	#if   (ADC_Interrupt == false)
+	//ADC Interrupt Selection. Note: Interrupt Flag gets cleared by writing digital logic 1 and vice versa
+	#if   (ADC_Interrupt == TRUE)
 	CLR_BIT(ADCSRA_REG,ADIE_BIT);
 	CLR_BIT(ADCSRA_REG,ADIF_BIT);
-	#elif (ADC_Interrupt == true)
+	#elif (ADC_Interrupt == FALSE)
 	SET_BIT(ADCSRA_REG,ADIE_BIT);
 	SET_BIT(ADCSRA_REG,ADIF_BIT);
 	#endif
-	
+	//Enable ADC
 	SET_BIT(ADCSRA_REG,ADEN_BIT);
+	
+	
 	
 }
 
 void ADC_Start_Conversion (ADC_Channels Channel)
 {
 
-
 	//ADC Channel Selection
 	ADMUX_REG &= ADC_CHANNEL_CLEAR_MASK;
 	ADMUX_REG |= Channel;
-
+ 
 	//ADC Start Conversion
 	SET_BIT(ADCSRA_REG,ADSC_BIT);
 	while(GET_BIT(ADCSRA_REG,ADSC_BIT) == 1 ) ;
 	
+}
+/**
+ * @brief Retrieves the ADC conversion result and converts it to a voltage value.
+ *
+ * This function reads the ADC conversion result from the ADCLH register,
+ * converts it to a voltage value using the predefined resolution factor,
+ * and returns the result as a 16-bit unsigned integer.
+ *
+ * @return uint16 The ADC conversion result in voltage representation
+ */
+uint16 ADC_GetResult(void)
+{
+	float Result = ADCLH_REG * ADC_VOLT_RESOLUTION_FACTOR;
+	return (uint16) Result;
+
 }

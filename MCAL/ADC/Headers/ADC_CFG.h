@@ -12,7 +12,7 @@
 #include <ADC_HW.h>
 
 
-#define ADC_VOLT_RESOLUTION_FACTOR 5.0/1024.0 // (Modify it to match the given sensor, mine = 10mV/C)
+#define ADC_VOLT_RESOLUTION_FACTOR 5.0/1024.0 // to convert bits into voltage
 
 //Token to get information about the required ADC Channel
 typedef enum {
@@ -27,7 +27,7 @@ typedef enum {
 }ADC_Channels;
 
 //Clearing Masks
-#define ADC_VOLTAGE_REF_CLEAR_MASK         0b00111111
+#define ADC_VOLTAGE_REF_CLEAR_MASK       0b00111111
 #define PRESCALER_CLR_MASK               0b11111000
 #define ADC_TRIGGERING_SOURCE_CLEAR_MASK 0b00011111
 #define ADC_CHANNEL_CLEAR_MASK           0b11100000
@@ -35,10 +35,10 @@ typedef enum {
 
 //Setting Masks
 #define ADC_VOLTAGE_REF         AVCC_VOLTAGE // use AVCC in AMIT Board
-#define PRESCALAR_FACTOR        ADC_PRESCALER_128
+#define PRESCALAR_FACTOR        ADC_PRESCALER_128 // use the largest factor to minimize sampling frequency to match ADC specsin Atmega32
 #define ADC_MODE                ADC_MODE_SINGLE_CONVERSION
 #define ADC_TRIGGERING_MODE     ADC_TRIGGER_SOURCE_FREE_RUNNING
-#define ADC_Interrupt           false 
+#define ADC_Interrupt           FALSE
 
 
 #endif /* ADC_CFG_H_ */
