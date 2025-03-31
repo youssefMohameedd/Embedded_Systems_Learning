@@ -6,8 +6,15 @@
  */ 
 #include <EXTI.h>
 
+// Null Pointers Initialization for ISR
+
+PTR_FN EXTI0_PTR = NULL;
+PTR_FN EXTI1_PTR = NULL;
+PTR_FN EXTI2_PTR = NULL;
+
 void EXTI_Init(void)
 {
+	
 	//Clear any previous config and Initialize sense control  with the corresponding Configuration.
 	CLR_BIT(MCUCSR_REG,ISC2_BIT);
 	
@@ -16,7 +23,7 @@ void EXTI_Init(void)
 	MCUCSR_REG |= EXTI2_SENSE_CONTROL;
 
 	
-	GICR_REG &= EXTI_MODE_FLAG_CLEAR_MASK;
+	GICR_REG &= EXTI_MODE_CLEAR_MASK;
 	#if(EXTI0_MODE == ENABLE)
 	SET_BIT(GICR_REG,INT0_BIT);
 	#endif
@@ -28,8 +35,10 @@ void EXTI_Init(void)
 	#endif
 	
 	//Make sure flags are initially cleared
-	GIFR_REG &= EXTI_MODE_FLAG_CLEAR_MASK;
+	GIFR_REG &= EXTI_FLAG_CLEAR_MASK;
 	
+	//Enable Global Interrupt
+	GI_Enable();
 	
 }
 
@@ -78,7 +87,35 @@ void EXTI_Setup (uint8 INT , uint8 Mode , uint8 Sense)
 	
 }
 
-void EXTI_CallBack_Function(void (*Foo_Ptr) (void))
+
+void EXTI0_Set_Callback(PTR_FN CB_Address)
 {
-	
+	EXTI0_PTR = CB_Address;
 }
+void EXTI1_Set_Callback(PTR_FN CB_Address)
+{
+	EXTI1_PTR = CB_Address;
+}
+void EXTI2_Set_Callback(PTR_FN CB_Address)
+{
+	EXTI2_PTR = CB_Address;
+}
+
+void __vector_1(void) __attribute__((signal,used));
+void __vector_1(void)
+{
+	if(EXTI0_PTR != NULL)	EXTI0_PTR() ;
+}
+
+void __vector_2(void) __attribute__((signal,used));
+void __vector_2(void)
+{
+	if(EXTI1_PTR != NULL)	EXTI1_PTR() ;
+}
+
+void __vector_3(void) __attribute__((signal,used));
+void __vector_3(void)
+{
+	if(EXTI2_PTR != NULL)	EXTI2_PTR() ;
+}
+

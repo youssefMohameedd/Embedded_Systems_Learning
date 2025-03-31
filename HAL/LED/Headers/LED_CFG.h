@@ -19,7 +19,7 @@
 
 // All Push buttons and Buzzer in AMIT Board are connected in a pull down resistor connection
 
-#define PushB0 PB0
+#define PushB0 PD2  // originally PB0
 #define PushB1 PD6
 #define PushB2 PD2
 

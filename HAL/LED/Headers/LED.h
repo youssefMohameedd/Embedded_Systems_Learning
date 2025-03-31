@@ -12,6 +12,7 @@
 #include <util/delay.h>
 #include <DIO.h>
 #include <LED_CFG.h>
+#include <EXTI.h>
 
 //This is HAL driver for LED , PushButton and Buzzer  
 
@@ -22,7 +23,7 @@
 void LED_Init(DIO_Channel LED);
 
 /**
- * @brief this function intializes the PushButton
+ * @brief this function initializes the PushButton
  * @param PushB Pushbutton pin number (PushB0,PushB1,PushB2)
  */
 void PushB_Init(DIO_Channel PushB);

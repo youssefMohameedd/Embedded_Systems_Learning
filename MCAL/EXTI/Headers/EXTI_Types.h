@@ -11,6 +11,8 @@
 
 #include <EXTI_HW.h>
 
+//Pointer to function typedef
+typedef void (*PTR_FN)(void);
 
 #define EXTI0	INT0_BIT
 #define EXTI1	INT1_BIT
@@ -36,7 +38,8 @@
 
 //Mask Definitions
 #define EXTI_SENSE_CONTROL_CLEAR_MASK 0b11110000
-#define EXTI_MODE_FLAG_CLEAR_MASK 0b00011111
+#define EXTI_MODE_CLEAR_MASK 0b00011111
+#define EXTI_FLAG_CLEAR_MASK 0b11111111
 
 
 

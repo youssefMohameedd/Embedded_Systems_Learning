@@ -7,15 +7,14 @@
 
 #include <GIE.h>
 
-
-// Notice : I-Bit gets cleared when user write logical one on it 
-
+// CORRECTION: I-Bit gets set to enable interrupts, cleared to disable
 
 void GI_Enable(void)
 {
-	CLR_BIT(SREG_REG,I_BIT);
+	SET_BIT(SREG_REG,I_BIT);  // Set I-bit to enable global interrupts
 }
+
 void GI_Disable(void)
 {
-	SET_BIT(SREG_REG,I_BIT);
+	CLR_BIT(SREG_REG,I_BIT);  // Clear I-bit to disable global interrupts
 }

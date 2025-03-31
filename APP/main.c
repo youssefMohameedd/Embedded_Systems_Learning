@@ -17,24 +17,27 @@
 #include <Stepper.h>
 #include <Sensors.h>
 
+void PushB_ISR()
+{
+	Write_LED(LED0,HIGH);
+	_delay_ms(1000);
+	Write_LED(LED0,LOW);
+	_delay_ms(1000);
+
+}
+
 int main(void)
 {
 	
-	ADC_Init();
-	LCD_Init();
-	_delay_ms(10);
+	LED_Init(LED0);
+	PushB_Init(PushB0);
+	EXTI_Init();
+	EXTI0_Set_Callback(&PushB_ISR);
 	
-	uint16 value ;
 
 	while(1)
 	{
-		value = Sensor_Read(LM35);
-		LCD_Write_Cmd(DISPLAY_CLEAR);
-		LCD_Move_Pos(0,3);
-		LCD_Write_Str("Temp:");
-		LCD_Write_Number(value);
-		
-		_delay_ms(250);
+	
 		
 		
 	}

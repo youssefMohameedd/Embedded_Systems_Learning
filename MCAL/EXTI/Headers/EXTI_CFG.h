@@ -12,7 +12,7 @@
 #include <EXTI_Types.h>
 
 //Init config for interrupt sense control -- improve comments in this file
-#define EXTI0_SENSE_CONTROL		INT0_FALLING
+#define EXTI0_SENSE_CONTROL		INT0_RISING
 #define EXTI1_SENSE_CONTROL		INT1_RISING
 #define EXTI2_SENSE_CONTROL		INT2_RISING // Range : FALLING - RISING,  only !!
 

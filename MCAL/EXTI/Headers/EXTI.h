@@ -10,6 +10,7 @@
 #define EXTI_H_
 
 #include <GIE.h>
+#include <STD_Types.h>
 #include <EXTI_Types.h>
 #include <EXTI_CFG.h>
 
@@ -24,8 +25,10 @@ void EXTI_Init(void);
 */
 void EXTI_Setup (uint8 INT , uint8 Mode , uint8 Sense);
 
-/* @Brief: Call Back function that assigns ISR address of the main the corresponding vector */
-void EXTI_CallBack_Function(void (*Foo_Ptr) (void));
+/* @Brief: Call Back functions that assigns ISR address of the main the corresponding vector */
+void EXTI0_Set_Callback(PTR_FN CB_Address);
+void EXTI1_Set_Callback(PTR_FN CB_Address);
+void EXTI2_Set_Callback(PTR_FN CB_Address);
 
 
 #endif /* EXTI_H_ */
