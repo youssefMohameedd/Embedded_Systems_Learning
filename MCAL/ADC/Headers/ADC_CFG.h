@@ -12,6 +12,9 @@
 #include <ADC_HW.h>
 
 
+//improvements add types file , configure initial value for muxes and first start conversion at the init function
+// add Startconversion macro inside ADC_Init function. and delay for stabilization
+
 #define ADC_VOLT_RESOLUTION_FACTOR 5.0/1024.0 // to convert bits into voltage
 
 //Token to get information about the required ADC Channel
@@ -26,6 +29,7 @@ typedef enum {
     ADC_Channel7
 }ADC_Channels;
 
+
 //Clearing Masks
 #define ADC_VOLTAGE_REF_CLEAR_MASK       0b00111111
 #define PRESCALER_CLR_MASK               0b11111000
@@ -35,10 +39,10 @@ typedef enum {
 
 //Setting Masks
 #define ADC_VOLTAGE_REF         AVCC_VOLTAGE // use AVCC in AMIT Board
-#define PRESCALAR_FACTOR        ADC_PRESCALER_128 // use the largest factor to minimize sampling frequency to match ADC specsin Atmega32
-#define ADC_MODE                ADC_MODE_SINGLE_CONVERSION
+#define PRESCALAR_FACTOR        ADC_PRESCALER_128 // use the largest factor to minimize sampling frequency to match ADC specs in Atmega32
+#define ADC_MODE                ADC_MODE_AUTO_TRIGGERED // use free running mode to get continuous conversion
 #define ADC_TRIGGERING_MODE     ADC_TRIGGER_SOURCE_FREE_RUNNING
-#define ADC_Interrupt           FALSE
+
 
 
 #endif /* ADC_CFG_H_ */

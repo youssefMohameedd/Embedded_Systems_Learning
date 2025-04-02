@@ -19,6 +19,9 @@ typedef unsigned int uint32;
 typedef signed int sint32 ;
 
 
+//Pointer to function typedef
+typedef void (*PTR_FN)(void);
+
 typedef enum {LOW,HIGH}STD_Level;
 
 #define TRUE 1

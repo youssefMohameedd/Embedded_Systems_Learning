@@ -1,43 +1,43 @@
 #ifndef DIO_CFG
 #define DIO_CFG
 
-typedef enum {PA = 0 , PB , PC , PD }DIO_Port;
+typedef enum {PA_PORT = 0 , PB_PORT , PC_PORT , PD_PORT }DIO_Port;
 	
 //Token to include information about the port and the pin .
 typedef enum 
 {
-    PA0 = 0 ,
-    PA1 = 1 ,
-    PA2 = 2 ,
-    PA3 = 3 ,
-    PA4 = 4 ,
-    PA5 = 5 ,
-    PA6 = 6 ,
-    PA7 = 7 ,
-    PB0 = 8 ,
-    PB1 = 9 , 
-    PB2 = 10 ,
-    PB3 = 11 , 
-    PB4 = 12 ,
-    PB5 = 13 ,
-    PB6 = 14 ,
-    PB7 = 15 ,
-    PC0 = 16 , 
-    PC1 = 17 , 
-    PC2 = 18 ,
-    PC3 = 19 ,
-    PC4 = 20 ,
-    PC5 = 21 ,
-    PC6 = 22 ,
-    PC7 = 23 ,
-    PD0 = 24 ,
-    PD1 = 25 ,
-    PD2 = 26 ,
-    PD3 = 27 ,
-    PD4 = 28 ,
-    PD5 = 29 ,
-    PD6 = 30 ,
-    PD7 = 31 
+    PA0_PIN = 0 ,
+    PA1_PIN = 1 ,
+    PA2_PIN = 2 ,
+    PA3_PIN = 3 ,
+    PA4_PIN = 4 ,
+    PA5_PIN = 5 ,
+    PA6_PIN = 6 ,
+    PA7_PIN = 7 ,
+    PB0_PIN = 8 ,
+    PB1_PIN = 9 , 
+    PB2_PIN = 10 ,
+    PB3_PIN = 11 , 
+    PB4_PIN = 12 ,
+    PB5_PIN = 13 ,
+    PB6_PIN = 14 ,
+    PB7_PIN = 15 ,
+    PC0_PIN = 16 , 
+    PC1_PIN = 17 , 
+    PC2_PIN = 18 ,
+    PC3_PIN = 19 ,
+    PC4_PIN = 20 ,
+    PC5_PIN = 21 ,
+    PC6_PIN = 22 ,
+    PC7_PIN = 23 ,
+    PD0_PIN = 24 ,
+    PD1_PIN = 25 ,
+    PD2_PIN = 26 ,
+    PD3_PIN = 27 ,
+    PD4_PIN = 28 ,
+    PD5_PIN = 29 ,
+    PD6_PIN = 30 ,
+    PD7_PIN = 31 
 }DIO_Channel;
 
 typedef enum {INPUT ,OUTPUT, PULL_UP}DIO_Direction;

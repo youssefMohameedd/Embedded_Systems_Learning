@@ -9,6 +9,7 @@
 #define F_CPU 16000000UL
 #endif
 
+
 #include <util/delay.h>
 #include <SSD.h>
 #include <LED.h>
@@ -16,31 +17,34 @@
 #include <Keypad.h>
 #include <Stepper.h>
 #include <Sensors.h>
+#include <avr/io.h>
 
-void PushB_ISR()
+static float value = 0 ;
+
+void ADC_ISR(void)
 {
-	Write_LED(LED0,HIGH);
-	_delay_ms(1000);
-	Write_LED(LED0,LOW);
-	_delay_ms(1000);
-
+	
+	value = Sensor_Read(NTC);
+	
+	
 }
 
 int main(void)
 {
+	//Preferably initialize the ADC before the LCD to ensure delay for stabilazaiton
+	ADC_Init(NTC);
+	ADC_Set_Callback(ADC_ISR);
 	
-	LED_Init(LED0);
-	PushB_Init(PushB0);
-	EXTI_Init();
-	EXTI0_Set_Callback(&PushB_ISR);
-	
+	LCD_Init();
+	_delay_ms(10);	
 
 	while(1)
 	{
 	
+		SSD_Write_Two_Digits(value);
 		
 		
 	}
-	
+
 	return 0;
 }

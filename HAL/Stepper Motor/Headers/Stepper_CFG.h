@@ -12,12 +12,12 @@
 
 
 
-#define IN1 PD4
-#define IN2 PD5
-#define IN3 PD6
-#define IN4 PD7
+#define IN1 PD4_PIN
+#define IN2 PD5_PIN
+#define IN3 PD6_PIN
+#define IN4 PD7_PIN
 
-#define STEPPER_PORT PD
+#define STEPPER_PORT PD_PORT
 #define STEPPER_SIG HIGH
 
 #define STEPPING 0// 0 : Half-Stepping(Variable Torque) , 1 : Full-Stepping(Const. Torque) , Wave-Mode (Const. Torque)

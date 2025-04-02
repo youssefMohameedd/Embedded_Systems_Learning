@@ -11,7 +11,7 @@
 
 
 #define LM35 0
-#define NTC 1
+#define NTC 1	//Note: PAA1 is reserved by hardware for Potentionmeter
 
 
 #endif /* LM35_CFG_H_ */

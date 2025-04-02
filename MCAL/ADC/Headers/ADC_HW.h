@@ -38,9 +38,9 @@
 #define ADPS2_BIT 2
 #define ADPS1_BIT 1
 #define ADPS0_BIT 0
-#define ADTS2_BIT 2
-#define ADTS1_BIT 1
-#define ADTS0_BIT 0
+#define ADTS2_BIT 7
+#define ADTS1_BIT 6
+#define ADTS0_BIT 5
 
 
 
@@ -67,7 +67,7 @@
 
 // Auto Triggering Sources
 
-#define ADC_TRIGGER_SOURCE_FREE_RUNNING      0<<ADTS0_BIT
+#define ADC_TRIGGER_SOURCE_FREE_RUNNING      0  // 0<<ADTS0_BIT
 #define ADC_TRIGGER_SOURCE_ANALOG_COMPARATOR 1<<ADTS0_BIT
 #define ADC_TRIGGER_SOURCE_EXT_INT0          2<<ADTS0_BIT
 #define ADC_TRIGGER_SOURCE_TIMER0_COMP       3<<ADTS0_BIT

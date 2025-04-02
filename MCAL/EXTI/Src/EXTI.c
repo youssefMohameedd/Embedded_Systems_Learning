@@ -88,17 +88,20 @@ void EXTI_Setup (uint8 INT , uint8 Mode , uint8 Sense)
 }
 
 
-void EXTI0_Set_Callback(PTR_FN CB_Address)
+void EXTI_Set_Callback(uint8 INT ,PTR_FN CB_Address)
 {
-	EXTI0_PTR = CB_Address;
-}
-void EXTI1_Set_Callback(PTR_FN CB_Address)
-{
-	EXTI1_PTR = CB_Address;
-}
-void EXTI2_Set_Callback(PTR_FN CB_Address)
-{
-	EXTI2_PTR = CB_Address;
+	switch(INT)
+	{
+		case EXTI0:
+		EXTI0_PTR = CB_Address;
+		break;
+		case EXTI1:
+		EXTI1_PTR = CB_Address;
+		break;
+		case EXTI2:
+		EXTI2_PTR = CB_Address;
+		break;
+	}
 }
 
 void __vector_1(void) __attribute__((signal,used));

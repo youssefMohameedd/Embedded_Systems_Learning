@@ -11,8 +11,6 @@
 
 #include <EXTI_HW.h>
 
-//Pointer to function typedef
-typedef void (*PTR_FN)(void);
 
 #define EXTI0	INT0_BIT
 #define EXTI1	INT1_BIT

@@ -68,4 +68,34 @@ ADC_Init();
 		
 	}
 	
+Ex (3) : Read Current value using interrupt ( Auto-Trigger with Free-Running Mode) // Honestly, I didn't test this example(neither verificaion nor validation)
+
+static uint16 value = 0 ;
+
+void ADC_ISR(void)
+{
 	
+	value = Sensor_Read(LM35);
+	
+}
+
+int main(void)
+{
+	//Preferably initialize the ADC before the LCD to ensure delay for stabilazaiton
+	ADC_Init(LM35);
+	ADC_Set_Callback(ADC_ISR);
+	
+	LCD_Init();
+	_delay_ms(10);	
+
+	while(1)
+	{
+		LCD_Write_Cmd(DISPLAY_CLEAR);
+		LCD_Move_Pos(0,3);
+		LCD_Write_Str("Temp:");
+		LCD_Write_Number(value);
+		
+	}
+
+	return 0;
+}

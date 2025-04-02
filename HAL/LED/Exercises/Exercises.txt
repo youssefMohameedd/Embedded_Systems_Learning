@@ -99,4 +99,45 @@ Excercise : 4 Use Internal Pull up resistor for PD5 (LED on with PushB pressed)
 		else Write_LED(LED0,LOW);
 	}
 		
+Ex(5): Use External Interrupt to light a LED upon PushB press:
+
+#ifndef F_CPU
+#define F_CPU 16000000UL
+#endif
+
+#include <util/delay.h>
+#include <SSD.h>
+#include <LED.h>
+#include <LCD.h>
+#include <Keypad.h>
+#include <Stepper.h>
+#include <Sensors.h>
+
+void PushB_ISR()
+{
+	Write_LED(LED0,HIGH);
+	_delay_ms(1000);
+	Write_LED(LED0,LOW);
+	_delay_ms(1000);
+
+}
+
+int main(void)
+{
+	
+	LED_Init(LED0);
+	PushB_Init(PushB0);
+	EXTI_Init();
+	EXTI0_Set_Callback(&PushB_ISR);
+	
+
+	while(1)
+	{
+	
 		
+		
+	}
+	
+	return 0;
+}
+	

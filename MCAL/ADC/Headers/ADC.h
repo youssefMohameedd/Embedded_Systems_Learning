@@ -13,7 +13,7 @@
 #include <Bit_Math.h>
 #include <ADC_CFG.h>
 #include <ADC_HW.h>
-
+#include <GIE.h>
 
 
 /*
@@ -24,7 +24,7 @@ our current assignation (we have made something similar in DIO  Write_Nibble )
 /**
  * @brief Initializes the ADC module.
  */
-void ADC_Init (void);
+void ADC_Init (ADC_Channels Channel);
 
 /**
  * @brief Starts conversion of the specified ADC channel.
@@ -33,6 +33,14 @@ void ADC_Init (void);
  */
 void ADC_Start_Conversion(ADC_Channels Channel);
 
-uint16 ADC_GetResult(void);
+float ADC_GetResult(void);
+
+void ADC_Interrupt_Enable(void);
+
+void ADC_Interrupt_Disable(void);
+
+void ADC_Set_Callback(PTR_FN CB_Address);
+
+
 
 #endif /* ADC_H_ */

@@ -7,7 +7,7 @@
 
 #include <GIE.h>
 
-// CORRECTION: I-Bit gets set to enable interrupts, cleared to disable
+// I-Bit gets set to enable interrupts, cleared to disable
 
 void GI_Enable(void)
 {

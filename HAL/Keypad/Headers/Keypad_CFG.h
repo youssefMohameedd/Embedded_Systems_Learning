@@ -16,15 +16,15 @@ isn't functioning , and I hope you don't :)    */
 
 // Pin Definitions
 
-#define r1 PB7
-#define r2 PB6
-#define r3 PB5
-#define r4 PB4
+#define r1 PB7_PIN
+#define r2 PB6_PIN
+#define r3 PB5_PIN
+#define r4 PB4_PIN
 
-#define c1 PC6
-#define c2 PC5
-#define c3 PC4
-#define c4 PC3
+#define c1 PC6_PIN
+#define c2 PC5_PIN
+#define c3 PC4_PIN
+#define c4 PC3_PIN
 
 //Columns mode
 #define INPUT 0
